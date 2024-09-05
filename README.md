@@ -1,6 +1,8 @@
 ## Group 9
 
-Note: We are still figuring out a name for our project.
+## App Name
+
+PartyPulse
 
 ## Team Members
 
