@@ -12,7 +12,7 @@ PartyPulse
 
 ## Description
 
-Our application provides users with the ability to connect with other gamers with the same skill sets or playstyle. Users who sign up for the application are able to find and create groups. Users may find that they tend to syngergize better with certain players within a multiplayer game, therefore, it is essential that each user are able to join and connect with multiple groups. Our application aims to tackle the goal of finding friends to play with, those who are casuals, competitive, learners, or any other categories that may fit. 
+Our application provides users with the ability to connect with other gamers based on what games they are wanting to find partymates for. Users can separate themselves within the "PartyPulse" by what teammates they are looking for. Gamers sometimes have a hard time finding teammates so we want to make a quick and easy experience, while also making friendships in the app, in games, and possibly real-life. Our application aims to tackle the goal of finding friends to play with, no matter what playstyle, region, or experience level. 
 
 ## Features
 
