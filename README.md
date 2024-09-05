@@ -4,9 +4,9 @@ Note: We are still figuring out a name for our project.
 
 ## Team Members
 
-Y'Vin Kpa
-Caden Parsons
-Daisy Ibuoka
+- Y'Vin Kpa
+- Caden Parsons
+- Daisy Ibuoka
 
 ## Description
 
@@ -31,6 +31,4 @@ Ability to rate and review other users based on their experience. Users can buil
 Users have the ability to create and customize their groups. Customization include group avatar, group banner,  and group roles. Users who have create a group are owners and can customize each user's role. Some roles can be customizaed to have the ability to post in their group feed.
 
 ### Admin System
-
--
 
