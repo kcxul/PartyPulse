@@ -25,12 +25,12 @@ Users have the ability to create a profile centered around their gaming experien
 Users who join a group are able create posts within the group's feed section. Users also have the ability to direct message other users or send message within a group.
 
 - Feedback and Rating
-Ability to rate and review other users based on their experience. Users can build reputation within the platform.
+Ability to rate and review other users based on their experience. Users can build reputation within the platform, as a whole and in individual "PartySpaces".
 
 ### Providers
 
 - Group Creation and Management
-Users have the ability to create and customize their groups. Customization include group avatar, group banner,  and group roles. Users who have create a group are owners and can customize each user's role. Some roles can be customizaed to have the ability to post in their group feed.
+Users have the ability to customize user roles and how the "PartySpace" looks. Customization include group avatar, group banner, and group roles. Users who have create a group are owners and can customize each user's role. Some roles may be reached by an individual reputation system which is controlled by reviews inside the individual "PartySpace".
 
 
 ### Admin System
