@@ -30,5 +30,12 @@ Ability to rate and review other users based on their experience. Users can buil
 - Group Creation and Management
 Users have the ability to create and customize their groups. Customization include group avatar, group banner,  and group roles. Users who have create a group are owners and can customize each user's role. Some roles can be customizaed to have the ability to post in their group feed.
 
+
 ### Admin System
+
+- Account and Content Moderation/Management
+Admin can monitor and manage users, groups, and content within the group such as posts and messages.
+
+- Support and Troubleshooting
+Admin can access support tickets and bug reports sent by users.
 
