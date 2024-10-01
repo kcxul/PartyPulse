@@ -64,6 +64,9 @@ PartyPulse provides users with the ability to connect with other gamers based on
 
 </body>
 </html>
+
+
+
 ### Customer
 
 - Profile Creation and Customization
