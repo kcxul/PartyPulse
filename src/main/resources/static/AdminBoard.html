@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PartyPulse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #343a40;
+            color: white;
+            position: fixed;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        h1 {
+            color: #d9534f;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #d9534f;
+            color: white;
+        }
+        button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        .status-active {
+            color: green;
+        }
+        .status-banned {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Admin Menu</h2>
+    <a href="#manage-users">Manage Users</a>
+    <a href="#moderate-content">Moderate Content</a>
+    <a href="#view-statistics">View Usage Statistics</a>
+    <a href="#support-tickets">Support Tickets</a>
+</div>
+
+<div class="content">
+    <h1>Admin Dashboard</h1>
+
+    <!-- Manage Users Section -->
+    <section id="manage-users">
+        <h2>Manage Users</h2>
+        <p>Here you can view and manage user accounts. Take necessary actions to maintain a healthy community.</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>User1</td>
+                <td>user1@example.com</td>
+                <td class="status-active">Active</td>
+                <td><button onclick="banUser('User1')">Ban</button></td>
+            </tr>
+            <tr>
+                <td>User2</td>
+                <td>user2@example.com</td>
+                <td class="status-banned">Banned</td>
+                <td><button onclick="unbanUser('User2')">Unban</button></td>
+            </tr>
+            <!-- Additional user rows will be populated dynamically -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Moderate Content Section -->
+    <section id="moderate-content">
+        <h2>Moderate Content</h2>
+        <p>Review and manage content created by users. Ensure all posts adhere to community guidelines.</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Content ID</th>
+                <th>User</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>123</td>
+                <td>User1</td>
+                <td>Post</td>
+                <td><button onclick="removeContent(123)">Remove</button></td>
+            </tr>
+            <!-- Additional content rows will be populated dynamically -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- View Usage Statistics Section -->
+    <section id="view-statistics">
+        <h2>Usage Statistics</h2>
+        <p>Monitor the overall health of the application with these key metrics.</p>
+        <p>Total Active Users: <span id="active-users">100</span></p>
+        <p>Total Groups: <span id="total-groups">20</span></p>
+        <!-- Additional statistics can be added here -->
+    </section>
+
+    <!-- Support Tickets Section -->
+    <section id="support-tickets">
+        <h2>Support Tickets</h2>
+        <p>Manage user inquiries and issues effectively.</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>User</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>001</td>
+                <td>User2</td>
+                <td>Open</td>
+                <td><button onclick="viewTicket(001)">View</button></td>
+            </tr>
+            <!-- Additional ticket rows will be populated dynamically -->
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<script>
+    function banUser(username) {
+        alert(`User ${username} has been banned.`);
+        // Additional logic to handle banning the user
+    }
+
+    function unbanUser(username) {
+        alert(`User ${username} has been unbanned.`);
+        // Additional logic to handle unbanning the user
+    }
+
+    function removeContent(contentId) {
+        alert(`Content ID ${contentId} has been removed.`);
+        // Additional logic to handle content removal
+    }
+
+    function viewTicket(ticketId) {
+        alert(`Viewing details for ticket ID ${ticketId}.`);
+        // Additional logic to handle viewing the ticket
+    }
+</script>
+
+</body>
+</html>
