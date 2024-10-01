@@ -4,6 +4,14 @@ PartyPulse provides users with the ability to connect with other gamers based on
 
 ## Features
 
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
 ### Customer
 
 - Profile Creation and Customization
