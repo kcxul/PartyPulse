@@ -1,4 +1,4 @@
-package com._0.PartyPulse;
+package com.group9.partypulse;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
