@@ -49,12 +49,29 @@
 
 <div class="login-container">
     <h2>Admin Login</h2>
-    <form>
-        <input type="text" placeholder="Admin Username" required>
-        <input type="password" placeholder="Password" required>
+    <form onsubmit="return handleLogin(event);">
+        <input type="text" id="username" placeholder="Admin Username" required>
+        <input type="password" id="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
 </div>
+
+<script>
+    function handleLogin(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Basic validation for demonstration purposes
+        if (username === 'admin' && password === 'password') {
+            // Redirect to Admin Board
+            window.location.href = 'AdminBoard.html'; // Ensure this path is correct
+        } else {
+            alert('Invalid username or password');
+        }
+    }
+</script>
 
 </body>
 </html>

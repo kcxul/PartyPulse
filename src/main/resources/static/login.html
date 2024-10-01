@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>Login</title>
     <style>
         body {
             display: flex;
@@ -19,19 +19,20 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
-        </style>
-    </head>
-
-    <body>
-    <pre>
-        <form action="partyspace.html">              Username:
-            <input type="text" name="Username"> <br>
-            Password:
-            <input type="text" name="Password"> <br>
-            <input type="submit" value="Enter">
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <form action="partyspace.html">
+        Username:
+        <input type="text" name="Username" required> <br>
+        Password:
+        <input type="password" name="Password" required> <br>
+        <input type="submit" value="Enter">
     </form>
 
-        Don't have an account? Click <a href="signup.html">here</a>
-        </pre>
-    </body>
-    </html>
+    <p>Don't have an account? Click <a href="signup.html">here</a></p>
+    <p>Admin? Click <a href="Adminlogin.html">here</a></p>
+</div>
+</body>
+</html>
