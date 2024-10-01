@@ -6,76 +6,77 @@
     <title>Admin Dashboard - PartyPulse</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif; /* Use a simple, clean font */
+            background-color: #f0f0f0; /* Light gray background */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
         .sidebar {
-            width: 200px;
-            height: 100vh;
-            background-color: #343a40;
-            color: white;
-            position: fixed;
-            padding-top: 20px;
+            width: 200px; /* Fixed width for the sidebar */
+            height: 100vh; /* Full height of the viewport */
+            background-color: #343a40; /* Dark background for the sidebar */
+            color: white; /* White text */
+            position: fixed; /* Keep it fixed on the left */
+            padding-top: 20px; /* Space from the top */
         }
         .sidebar a {
-            padding: 10px 15px;
-            text-decoration: none;
-            color: white;
-            display: block;
-            transition: background-color 0.3s;
+            padding: 10px 15px; /* Spacing for links */
+            text-decoration: none; /* No underline for links */
+            color: white; /* White text for links */
+            display: block; /* Each link takes full width */
+            transition: background-color 0.3s; /* Smooth background color change */
         }
         .sidebar a:hover {
-            background-color: #495057;
+            background-color: #495057; /* Darker background on hover */
         }
         .content {
-            margin-left: 220px;
-            padding: 20px;
+            margin-left: 220px; /* Space for the sidebar */
+            padding: 20px; /* Padding around content */
         }
         h1 {
-            color: #d9534f;
+            color: #d9534f; /* Red color for main heading */
         }
         h2 {
-            margin-top: 20px;
+            margin-top: 20px; /* Space above section headings */
         }
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+            width: 100%; /* Full width for tables */
+            border-collapse: collapse; /* Merge borders */
+            margin-top: 10px; /* Space above tables */
         }
         table, th, td {
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; /* Light gray border for tables */
         }
         th, td {
-            padding: 10px;
-            text-align: left;
+            padding: 10px; /* Space in table cells */
+            text-align: left; /* Align text to the left */
         }
         th {
-            background-color: #d9534f;
-            color: white;
+            background-color: #d9534f; /* Red background for table headers */
+            color: white; /* White text for headers */
         }
         button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            background-color: #d9534f; /* Red button */
+            color: white; /* White text on button */
+            border: none; /* No border for buttons */
+            padding: 10px; /* Space in button */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth background change */
         }
         button:hover {
-            background-color: #c9302c;
+            background-color: #c9302c; /* Darker red on hover */
         }
         .status-active {
-            color: green;
+            color: green; /* Green text for active users */
         }
         .status-banned {
-            color: red;
+            color: red; /* Red text for banned users */
         }
     </style>
 </head>
 <body>
 
+<!-- Sidebar Navigation -->
 <div class="sidebar">
     <h2>Admin Menu</h2>
     <a href="#manage-users">Manage Users</a>
@@ -84,13 +85,14 @@
     <a href="#support-tickets">Support Tickets</a>
 </div>
 
+<!-- Main Content Area -->
 <div class="content">
     <h1>Admin Dashboard</h1>
 
     <!-- Manage Users Section -->
     <section id="manage-users">
         <h2>Manage Users</h2>
-        <p>Here you can view and manage user accounts. Take necessary actions to maintain a healthy community.</p>
+        <p>Here you can view and manage user accounts to help maintain a healthy community.</p>
         <table>
             <thead>
             <tr>
@@ -113,7 +115,6 @@
                 <td class="status-banned">Banned</td>
                 <td><button onclick="unbanUser('User2')">Unban</button></td>
             </tr>
-            <!-- Additional user rows will be populated dynamically -->
             </tbody>
         </table>
     </section>
@@ -121,7 +122,7 @@
     <!-- Moderate Content Section -->
     <section id="moderate-content">
         <h2>Moderate Content</h2>
-        <p>Review and manage content created by users. Ensure all posts adhere to community guidelines.</p>
+        <p>Review and manage user-generated content to ensure it follows community guidelines.</p>
         <table>
             <thead>
             <tr>
@@ -138,7 +139,6 @@
                 <td>Post</td>
                 <td><button onclick="removeContent(123)">Remove</button></td>
             </tr>
-            <!-- Additional content rows will be populated dynamically -->
             </tbody>
         </table>
     </section>
@@ -146,10 +146,9 @@
     <!-- View Usage Statistics Section -->
     <section id="view-statistics">
         <h2>Usage Statistics</h2>
-        <p>Monitor the overall health of the application with these key metrics.</p>
+        <p>Keep an eye on the overall health of the application with these important metrics.</p>
         <p>Total Active Users: <span id="active-users">100</span></p>
         <p>Total Groups: <span id="total-groups">20</span></p>
-        <!-- Additional statistics can be added here -->
     </section>
 
     <!-- Support Tickets Section -->
@@ -172,31 +171,34 @@
                 <td>Open</td>
                 <td><button onclick="viewTicket(001)">View</button></td>
             </tr>
-            <!-- Additional ticket rows will be populated dynamically -->
             </tbody>
         </table>
     </section>
 </div>
 
 <script>
+    // Function to ban a user
     function banUser(username) {
         alert(`User ${username} has been banned.`);
-        // Additional logic to handle banning the user
+        // Additional logic to handle banning the user can go here
     }
 
+    // Function to unban a user
     function unbanUser(username) {
         alert(`User ${username} has been unbanned.`);
-        // Additional logic to handle unbanning the user
+        // Additional logic to handle unbanning the user can go here
     }
 
+    // Function to remove content
     function removeContent(contentId) {
         alert(`Content ID ${contentId} has been removed.`);
-        // Additional logic to handle content removal
+        // Additional logic to handle content removal can go here
     }
 
+    // Function to view support ticket details
     function viewTicket(ticketId) {
         alert(`Viewing details for ticket ID ${ticketId}.`);
-        // Additional logic to handle viewing the ticket
+        // Additional logic to handle viewing the ticket can go here
     }
 </script>
 
