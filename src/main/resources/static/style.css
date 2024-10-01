@@ -53,3 +53,24 @@ body main-page {
 	text-decoration: none;
 	color: white;
 }
+.party-container{
+    display: flex;
+    flex-direction: row;
+
+
+}
+.spacesanddms {
+    height: 740px;
+    width: 100px;
+    background-color: lightblue;
+
+
+
+}
+
+.channels{
+    height: 740px;
+    width: 300px;
+    background-color: DodgerBlue;
+
+}
