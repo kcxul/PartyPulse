@@ -4,6 +4,13 @@ PartyPulse provides users with the ability to connect with other gamers based on
 
 ## Features
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - PartyPulse</title>
+  <style>
     body {
         display: flex;
         justify-content: center;
@@ -12,6 +19,51 @@ PartyPulse provides users with the ability to connect with other gamers based on
         margin: 0;
         background-color: #f0f0f0;
     }
+    .login-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+    }
+    h2 {
+        margin: 0 0 20px;
+        text-align: center;
+    }
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #d9534f;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #c9302c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Admin Login</h2>
+  <form>
+    <input type="text" placeholder="Admin Username" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+</body>
+</html>
 ### Customer
 
 - Profile Creation and Customization
