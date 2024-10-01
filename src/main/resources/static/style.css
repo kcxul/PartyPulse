@@ -26,3 +26,13 @@ h2 {
 p {
 	font-size: var(--font-size-standard);
 }
+
+spacesanddms {
+    height: 500px;
+    width: 500px;
+    background-color: lightblue;
+
+
+
+
+    }
