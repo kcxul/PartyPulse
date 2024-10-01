@@ -4,13 +4,6 @@ PartyPulse provides users with the ability to connect with other gamers based on
 
 ## Features
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login - PartyPulse</title>
-  <style>
     body {
         display: flex;
         justify-content: center;
