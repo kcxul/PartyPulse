@@ -163,3 +163,24 @@ p {
   text-transform: uppercase;
   margin-bottom: 20px;
 }
+.party-container{
+    display: flex;
+    flex-direction: row;
+
+
+}
+.spacesanddms {
+    height: 740px;
+    width: 100px;
+    background-color: lightblue;
+
+
+
+}
+
+.channels{
+    height: 740px;
+    width: 300px;
+    background-color: DodgerBlue;
+
+}
