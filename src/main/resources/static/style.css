@@ -313,6 +313,7 @@ p {
 }
 
 .login-container {
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -522,7 +523,7 @@ input[type="email"]:focus {
 
 .search-bar input[type="text"] {
   padding: 10px;
-  border-radius: 4px 0 0 4px;
+  border-radius: 0px 0 0 0px;
   font-size: var(--font-size-standard);
   height: 40px;
   border: 1px solid #ffffff;
@@ -546,6 +547,26 @@ input[type="email"]:focus {
 .search-list-button img {
   width: 20px;
   height: 20px;
+}
+
+.filter-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.filter-select {
+  padding: 8px;
+  font-size: var(--font-size-standard);
+  border: 1px solid #ffffff;
+  border-radius: 4px 0 0 4px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .join-button {
