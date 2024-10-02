@@ -4,12 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistics - PartyPulse</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #001f3f; /* Dark blue background */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #ffcc00; /* Highlight color for headings */
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background-color: #002244; /* Lighter background for stat boxes */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 15px;
+            flex: 1;
+            max-width: 250px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .stat-box h2 {
+            color: #ffcc00; /* Highlight color for stat titles */
+            margin: 0 0 10px 0;
+        }
+        .stat-value {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+        button {
+            background-color: #ffcc00; /* Button color */
+            color: #001f3f;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ffd700; /* Button hover color */
+        }
+        .chart {
+            margin-top: 40px;
+        }
+        /* Chart styling */
+        canvas {
+            max-width: 800px;
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 <h1>Usage Statistics</h1>
 <p>Monitor application performance and user engagement.</p>
-<p>Total Active Users: <span id="active-users">100</span></p>
-<p>Total Groups: <span id="total-groups">20</span></p>
+
+<div class="stats-container">
+    <div class="stat-box">
+        <h2>Total Active Users</h2>
+        <div class="stat-value" id="active-users">100</div>
+    </div>
+    <div class="stat-box">
+        <h2>Total Groups</h2>
+        <div class="stat-value" id="total-groups">20</div>
+    </div>
+</div>
+
+<div class="chart">
+    <canvas id="usageChart"></canvas>
+</div>
+
 <button onclick="window.history.back();">Back to Admin Board</button>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Sample data for the chart
+    const ctx = document.getElementById('usageChart').getContext('2d');
+    const usageChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Active Users', 'Total Groups'],
+            datasets: [{
+                label: 'Statistics',
+                data: [100, 20],
+                backgroundColor: [
+                    'rgba(255, 204, 0, 0.6)',
+                    'rgba(0, 38, 64, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 204, 0, 1)',
+                    'rgba(0, 38, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#ffffff'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#ffffff'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffffff'
+                    }
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>

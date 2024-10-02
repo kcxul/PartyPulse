@@ -4,11 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users - PartyPulse</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #001f3f; /* Dark blue background */
+            color: #fff;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffcc00; /* Highlight color for headings */
+        }
+        p {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            background-color: #ffcc00; /* Button color */
+            color: #001f3f;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ffd700; /* Button hover color */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            max-width: 900px;
+            background-color: #002244; /* Lighter background for table */
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        thead {
+            background-color: #003366; /* Darker blue for the header */
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        th {
+            color: #ffcc00; /* Highlight color for table header */
+        }
+        tr:hover {
+            background-color: #003366; /* Darker row on hover */
+        }
+        .action-button {
+            background-color: #d9534f; /* Red for removal */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .action-button:hover {
+            background-color: #c9302c; /* Darker red on hover */
+        }
+    </style>
 </head>
 <body>
 <h1>Manage Users</h1>
 <p>Here you can view and manage user accounts.</p>
-<table>
+<div class="search-container">
+    <input type="text" placeholder="Search Users..." onkeyup="searchUsers()">
+</div>
+<table id="userTable">
     <thead>
     <tr>
         <th>Username</th>
@@ -20,11 +98,75 @@
     <tr>
         <td>User1</td>
         <td>user1@example.com</td>
-        <td><button>Remove</button></td>
+        <td><button class="action-button">Remove</button></td>
     </tr>
-    <!-- Additional user rows will be populated dynamically -->
+    <tr>
+        <td>User2</td>
+        <td>user2@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User3</td>
+        <td>user3@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User4</td>
+        <td>user4@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User5</td>
+        <td>user5@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User6</td>
+        <td>user6@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User7</td>
+        <td>user7@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User8</td>
+        <td>user8@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User9</td>
+        <td>user9@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
+    <tr>
+        <td>User10</td>
+        <td>user10@example.com</td>
+        <td><button class="action-button">Remove</button></td>
+    </tr>
     </tbody>
 </table>
 <button onclick="window.history.back();">Back to Admin Board</button>
+
+<script>
+    function searchUsers() {
+        const input = document.querySelector('input[type="text"]');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById("userTable");
+        const trs = table.getElementsByTagName("tr");
+        for (let i = 1; i < trs.length; i++) {
+            const tds = trs[i].getElementsByTagName("td");
+            let found = false;
+            for (let j = 0; j < tds.length - 1; j++) {
+                if (tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+            trs[i].style.display = found ? "" : "none";
+        }
+    }
+</script>
 </body>
 </html>

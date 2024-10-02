@@ -1,77 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - PartyPulse</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PartyPulse Admin</title>
+    <link rel="stylesheet" href="style.css" />
     <style>
         body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #001f3f; /* Dark blue background */
+            color: #fff;
+        }
+        .nav-container {
+            background-color: #003366; /* Darker blue for the navbar */
+            padding: 15px;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .nav-links li {
+            margin: 0 20px;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ffcc00; /* Highlight color on hover */
+        }
+        .hero-section {
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            background: url('images/hero-background.jpg') no-repeat center center / cover; /* Add a background image */
         }
-        .login-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        h2 {
-            margin: 0 0 20px;
+        .hero-content {
             text-align: center;
         }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+        .hero-content h1 {
+            font-size: 4rem;
+            margin: 0;
         }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
+        .hero-content h4 {
+            margin: 20px 0;
+            font-size: 1.5rem;
         }
-        button:hover {
-            background-color: #c9302c;
+        .btn-get-started {
+            background-color: #ffcc00; /* Button color */
+            color: #001f3f;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-get-started:hover {
+            background-color: #ffd700; /* Button hover color */
+        }
+        .container {
+            padding: 20px;
+        }
+        .section-home {
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .row-content {
+            max-width: 800px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .home-image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            .row-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .home-image {
+                margin: 20px 0;
+            }
         }
     </style>
 </head>
 <body>
-
-<div class="login-container">
-    <h2>Admin Login</h2>
-    <form onsubmit="return handleLogin(event);">
-        <input type="text" id="username" placeholder="Admin Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
+<div class="nav-placeholder"></div>
+<nav class="nav-container" id="navbar">
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#section-container">About</a></li>
+        <li><a href="partyspacelist.html">PartySpaces</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Register</a></li>
+    </ul>
+</nav>
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Party</h1>
+        <h1>Pulse</h1>
+        <h4>Connect with other gamers and find new friends!</h4>
+        <a href="login.html" class="btn-get-started">Get Started</a>
+    </div>
+</section>
+<div id="section-container" class="container">
+    <section class="section-home">
+        <div class="row-content">
+            <div class="content-text">
+                <h1>Find other gamers!</h1>
+                <p>Discover new friends and gaming partners.</p>
+                <p>PartyPulse is your go-to platform for connecting with fellow gamers. Find teammates for your favorite multiplayer games or just want to find new friends who share your passion for gaming.</p>
+            </div>
+            <div class="home-image">
+                <img src="images/home1.jpg" alt="Gamers Connecting" />
+            </div>
+        </div>
+    </section>
+    <section class="section-home">
+        <div class="row-content">
+            <div class="content-text">
+                <h1>Create a party space!</h1>
+                <p>Create your own party space and manage it the way you want to. Manage your party member roles and permissions with ease. Change whether you want your space to be public or private. Create your own party space today!</p>
+            </div>
+            <div class="home-image">
+                <img src="images/home3.jpg" alt="Creating a Party Space" />
+            </div>
+        </div>
+    </section>
+    <section class="section-home">
+        <div class="row-content">
+            <div class="content-text">
+                <h1>Join PartySpace!</h1>
+                <p>PartySpace is free and supports all platforms. Join now and start connecting with other gamers. Create your own party space and enjoy gaming with your new friends.</p>
+            </div>
+            <div class="home-image">
+                <img src="images/home2.jpg" alt="Joining PartySpace" />
+            </div>
+        </div>
+    </section>
 </div>
-
-<script>
-    function handleLogin(event) {
-        event.preventDefault(); // Prevent the form from submitting
-
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        // Basic validation for demonstration purposes
-        if (username === 'admin' && password === 'password') {
-            // Redirect to Admin Board
-            window.location.href = 'AdminBoard.html'; // Ensure this path is correct
-        } else {
-            alert('Invalid username or password');
-        }
-    }
-</script>
-
+<script src="navbar.js"></script>
 </body>
 </html>
