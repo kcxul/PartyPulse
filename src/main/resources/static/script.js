@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Login
-
 function handleLogin(event) {
   event.preventDefault();
   const username = document.getElementById("username").value;
