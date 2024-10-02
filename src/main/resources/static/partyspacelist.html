@@ -1,15 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PartySpace List</title>
-</head>
-<body>
-*searchbar at top*
-<pre>
-
-    *partyspace logo here* *partyspace logo here* *partyspace logo here*
-    *name of partyspace*    *name of partyspace*   *name of partyspace*</pre>
-</body>
+    <title>PartyPulse</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="home-page">
+    <div class="nav-placeholder"></div>
+    <nav class="nav-container" id="navbar">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Register</a></li>
+      </ul>
+    </nav>
+    <section class="hero-section">
+      <div class="hero-background-2">
+        <div class="hero-content">
+          <h1>Party</h1>
+          <h1>Spaces</h1>
+          <h4>Find party spaces created below!</h4>
+        </div>
+      </div>
+    </section>
+    <div id="partyspace-list-container" class="container">
+      <section class="partyspace-list-section">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search for party spaces..." />
+          <button type="button" id="search-button" class="search-list-button">
+            <img src="images/searchicon.png" alt="Search" />
+          </button>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item">
+            <img src="" alt="Party Space 1" />
+            <h2>Forza Horizon 5 Tuner's Club</h2>
+            <p>Dedicated to players who wants to learn to tune their cars for performance and track racing!</p>
+            <button class="join-button">Join</button>
+          </div>
+          <div class="grid-item">
+            <img src="images/party2.jpg" alt="Party Space 2" />
+            <h2>Elden Ring Speedrun Group</h2>
+            <p>A dedicated space for elden ring speed runners!</p>
+            <button class="join-button">Join</button>
+          </div>
+          <div class="grid-item">
+            <img src="images/party3.jpg" alt="Party Space 3" />
+            <h2>Counter Strike 2 - Rank LFG</h2>
+            <p>If you're looking to find players and rank up in competitive mode, join us!</p>
+            <button class="join-button">Join</button>
+          </div>
+          <div class="grid-item">
+            <img src="images/party4.jpg" alt="Party Space 4" />
+            <h2>Minecraft Creation Club</h2>
+            <p>Share your creation and build ideas. Find and share design and building tips with others!</p>
+            <button class="join-button">Join</button>
+          </div>
+          <div class="grid-item">
+            <img src="images/party5.jpg" alt="Party Space 5" />
+            <h2>Apex Legends - High ELO Group</h2>
+            <p>
+              If you're a competitive gamer and looking to find a group for competitive play, join us. Players must be in Diamond rank or
+              higher.
+            </p>
+            <button class="join-button">Join</button>
+          </div>
+          <div class="grid-item">
+            <img src="images/party6.jpg" alt="Party Space 6" />
+            <h2>Chess Learning Club</h2>
+            <p>
+              If you're new to chess and want to start learning how to play chess and improve your rating, this is the club for you. Learn
+              new openings and how to make the best moves!
+            </p>
+            <button class="join-button">Join</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="navbar.js"></script>
+  </body>
 </html>
