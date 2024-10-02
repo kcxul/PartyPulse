@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>Login</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .login-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-    </style>
-</head>
-<body>
-<div class="login-container">
-    <form action="partyspace.html">
-        Username:
-        <input type="text" name="Username" required> <br>
-        Password:
-        <input type="password" name="Password" required> <br>
-        <input type="submit" value="Enter">
-    </form>
-
-    <p>Don't have an account? Click <a href="signup.html">here</a></p>
-    <p>Admin? Click <a href="Adminlogin.html">here</a></p>
-</div>
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="login-body">
+    <div class="top-container">
+      <div>
+        <button class="btn-back" onclick="window.history.back();">Return</button>
+      </div>
+    </div>
+    <section class="hero-section-login">
+      <div class="hero-content">
+        <h1>Login</h1>
+      </div>
+      <div class="login-container">
+        <form onsubmit="return handleLogin(event);">
+          <input type="text" id="username" placeholder="Username" required" /> <input type="password" id="password" placeholder="Password"
+          required" />
+          <button class="btn-login" type="submit">Login</button>
+        </form>
+        <p>
+          Need an account?
+          <a href="signup.html">Register</a>
+        </p>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
 </html>

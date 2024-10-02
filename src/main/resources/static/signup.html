@@ -1,45 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Signup</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .login-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-    </style>
-</head>
-<body>
-<pre>
-<form action="partyspace.html">
-    Email:
-    <input type="Text" name="Email"><br>
-    Password:
-    <input type="text" name="Password"> <br>
-    Username:
-    <input type="text" name="Username"><br>
-    Console Type:
-    <input type="checkbox" name="console1" value="Xbox"> Xbox <br>
-    <input type="checkbox" name="console2" value="Playstation"> Playstation<br>
-    <input type="checkbox" name="console3" value="PC"> PC <br>
-    <input type="checkbox" name="console4" value="Switch"> Nintendo Switch <br>
-    <input type="submit" value="Join the Party!">
-
-
-</form>
-    </pre>
-</body>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="login-body">
+    <div class="top-container">
+      <div>
+        <button class="btn-back" onclick="window.history.back();">Return</button>
+      </div>
+    </div>
+    <section class="hero-section-login">
+      <div class="hero-content">
+        <h1>Sign Up</h1>
+      </div>
+      <div class="login-container">
+        <form id="signup-form" onsubmit="return handleSignup(event);">
+          <input type="text" id="username" placeholder="Username" required />
+          <input type="email" id="email" placeholder="Email" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+          <button class="btn-login" type="submit">Sign Up</button>
+        </form>
+        <p>
+          Already have an account?
+          <a href="login.html">Login</a>
+        </p>
+      </div>
+    </section>
+    <script src="signup.js"></script>
+  </body>
 </html>

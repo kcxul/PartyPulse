@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>PartySpaces</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PartySpaces</title>
     <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<div class="spacesanddms">
-     *sidebar with PartySpaces the user is currently in and logo of app to take user to their dms*
-    *button at bottom left takes users to find other PartySpaces*
-    *at bottom of this sidebar, their username is shown along with their profile picture again, clicking this
-    will send them to their profile*
-
-</div>
-<div class="channels">
-    *sidebar slight right with channels of the current PartySpace or the user is actively looking at*
-</div>
-<div class="dms">
-    *sidebar changes to dms when they click on the apps logo*
-</div>
-<div class="Chat">
-    *chatbox at the bottom*
-</div>
-</body>
+    <link rel="stylesheet" href="partyspace.css" />
+  </head>
+  <body class="partyspace-body">
+    <div class="partyspace-body-container">
+      <div class="party-container">
+        <div class="members-list">
+          <h2>Members</h2>
+          <ul>
+            <li>Member 1</li>
+            <li>Member 2</li>
+            <li>Member 3</li>
+          </ul>
+        </div>
+        <div class="chatbox">
+          <div class="chatbox-messages">
+            <p>
+              <strong>Member 1:</strong>
+              Hello!
+            </p>
+            <p>
+              <strong>Member 2:</strong>
+              Hi there!
+            </p>
+          </div>
+          <div class="chatbox-input">
+            <input type="text" placeholder="Type a message..." />
+            <button>Send</button>
+          </div>
+        </div>
+        <div class="profile-and-spaces">
+          <div class="profile">
+            <img src="profile-pic.jpg" alt="Profile Picture" />
+            <h3>User1</h3>
+            <button>Edit Profile</button>
+          </div>
+          <div class="partyspaces-list">
+            <h2>PartySpaces</h2>
+            <div class="partyspaces-grid">
+              <div class="partyspace-item" onclick="changePartySpace('PartySpace 1')">
+                <button>PartySpace 1</button>
+              </div>
+              <div class="partyspace-item" onclick="changePartySpace('PartySpace 2')">
+                <button>PartySpace 2</button>
+              </div>
+              <div class="partyspace-item" onclick="changePartySpace('PartySpace 3')">
+                <button>PartySpace 3</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
