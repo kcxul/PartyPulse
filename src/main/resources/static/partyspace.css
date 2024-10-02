@@ -1,0 +1,137 @@
+.partyspace-body {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  color: white;
+  height: 100dvh;
+  width: 100dvw;
+}
+
+.partyspace-body-container {
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin: 12px;
+  width: 99%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.party-container {
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border-radius: 12px;
+  margin: 10px; */
+  width: calc(10% - 20px);
+  background-color: #202020;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.chatbox {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #222;
+  /* border-radius: 12px;
+  margin: 10px;
+  padding: 12px; */
+}
+
+.chatbox-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.chatbox-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.chatbox-input input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #444;
+  color: white;
+}
+
+.chatbox-input button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+}
+
+.chatbox-input button:hover {
+  background-color: #666;
+}
+
+.profile-and-spaces {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  /* border-radius: 12px;
+  margin: 10px; */
+  width: calc(10% - 20px);
+  background-color: #202020;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border-radius: 12px;
+  margin: 10px; */
+  background-color: #242424;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  order: -1;
+}
+
+.partyspaces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.partyspace-item {
+  text-align: center;
+}
+
+.partyspace-item button {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
