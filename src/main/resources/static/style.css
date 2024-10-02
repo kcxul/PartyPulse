@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
 
 :root {
   --font-size-small: 0.875rem;
@@ -8,7 +8,7 @@
   --font-size-large: 1.25rem;
   --font-size-xlarge: 1.5rem;
   --font-size-xxlarge: 2rem;
-  --font-color-offwhite: #F2F0EF;
+  --font-color-offwhite: #f2f0ef;
   --font-press-start-2p: "Press Start 2P", cursive;
   --font-arimo: "Arimo", sans-serif;
   --font-alfacad-flux: "Afacad Flux", sans-serif;
@@ -18,11 +18,18 @@
   font-family: var(--font-alfacad-flux);
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-size: var(--font-size-standard);
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -37,6 +44,66 @@ p {
   font-size: var(--font-size-standard);
 }
 
+a {
+  text-decoration: none;
+  color: lightblue;
+}
+
+/* Custom Alert */
+
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336; /* Red background */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+.btn-back {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: var(--font-size-standard);
+  margin: 20px;
+  transition: 0.3s;
+  border: 1px solid transparent;
+}
+
+.btn-back:hover {
+  transition: 0.3s;
+  scale: 1.05;
+  background-color: #000000;
+  color: white;
+  border: 1px solid #f2f0ef;
+}
+
+.btn-login:focus {
+  outline: none;
+}
+
 /* Main Page Body */
 .home-page {
   background-color: black;
@@ -47,11 +114,19 @@ p {
 
 /* Navigation */
 
+.nav-placeholder {
+  height: 20px;
+}
+
 .nav-container {
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
   overflow: hidden;
   display: flex;
   justify-content: center;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
 }
 
 .nav-links {
@@ -69,7 +144,7 @@ p {
   display: block;
   color: var(--font-color-offwhite);
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 16px;
   text-decoration: none;
 }
 
@@ -88,14 +163,16 @@ p {
 }
 
 .section-home {
-  display: inline-block;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
+  position: relative;
+  margin: 100px;
   padding: 20px;
-  background-color: #000000;
   color: var(--font-color-offwhite);
-  border-radius: 20px;
-  width: 1200px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  overflow: hidden;
 }
 
 .home-image img {
@@ -143,10 +220,33 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #000000;
+  background-color: transparent;
   color: var(--font-color-offwhite);
-  padding: 20px;
+  width: 100%;
   margin: 0px;
+}
+
+.hero-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-background::before {
+  content: "";
+  background-image: url("images/valorant.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  padding: 0px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(20px);
+  z-index: -1;
 }
 
 .hero-content {
@@ -155,32 +255,142 @@ p {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  margin: 0px;
+  height: 100%;
 }
 
 .hero-content h1 {
   font-size: 5rem;
   font-family: var(--font-press-start-2p);
   text-transform: uppercase;
+  margin: 0px;
+}
+
+.hero-content h4 {
+  font-weight: normal;
+  margin: 12px;
+}
+
+.btn-get-started {
+  background-color: #f2f0ef;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: var(--font-size-standard);
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.btn-get-started:hover {
+  scale: 1.05;
+  transition: 0.3s;
+}
+
+/* Login Page */
+
+.login-body {
+  background-color: black;
+  color: white;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container h2 {
+  font-size: var(--font-size-xlarge);
   margin-bottom: 20px;
 }
-.party-container{
-    display: flex;
-    flex-direction: row;
 
+.login-body .hero-content {
+  margin-top: 0px;
+}
 
+.hero-section-login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background-color: transparent;
+	color: var(--font-color-offwhite);
+	margin: 200px;
+	padding: 0;
+}
+
+.hero-content h1 {
+	margin-bottom: 10px;
+}
+
+/* Input Boxes */
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: var(--font-size-standard);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: #000000;
+  outline: none;
+}
+
+.btn-login {
+  background-color: #f2f0ef;
+  color: black;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--font-size-standard);
+  width: 100%;
+  box-sizing: border-box;
+  transition: 0.3s;
+  border: 1px solid transparent;
+}
+
+.btn-login:hover {
+  transition: 0.3s;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border: 1px solid #f2f0ef;
+}
+
+/* PartySpace Page */
+
+.partyspace-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.party-container {
+  display: flex;
+  flex-direction: row;
 }
 .spacesanddms {
-    height: 740px;
-    width: 100px;
-    background-color: lightblue;
-
-
-
+  height: 740px;
+  width: 100px;
+  background-color: lightblue;
 }
 
-.channels{
-    height: 740px;
-    width: 300px;
-    background-color: DodgerBlue;
-
+.channels {
+  height: 740px;
+  width: 300px;
+  background-color: DodgerBlue;
 }
