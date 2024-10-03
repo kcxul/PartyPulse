@@ -10,6 +10,13 @@
   <body class="partyspace-body">
     <div class="partyspace-body-container">
       <div class="party-container">
+        <div
+          class="left-column-container"
+          onclick="window.history.back();"
+          style="cursor: pointer; display: flex; align-items: center; justify-content: center"
+        >
+          Back
+        </div>
         <div class="chatbox">
           <div class="chatbox-nav-container">
             <nav class="chatbox-nav">
@@ -18,35 +25,148 @@
               </ul>
             </nav>
           </div>
-          <div id="partyspace-settings" class="partyspace-settings">
-            <h2>PartySpace Settings</h2>
-            <form>
-              <div class="form-group">
-                <label for="partyspace-icon">Icon</label>
-                <input type="file" id="partyspace-icon" name="partyspace-icon" />
-              </div>
-              <div class="form-group">
-                <label for="partyspace-banner">Banner</label>
-                <input type="file" id="partyspace-banner" name="partyspace-banner" />
-              </div>
-              <div class="form-group">
-                <label for="partyspace-name">Name</label>
-                <input type="text" id="partyspace-name" name="partyspace-name" />
-              </div>
-              <div class="form-group">
-                <label for="partyspace-description">Description</label>
-                <textarea id="partyspace-description" name="partyspace-description"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="filter-keywords">Filter Keywords</label>
-                <input type="text" id="filter-keywords" name="filter-keywords" placeholder="Comma separated keywords" />
-              </div>
-              <button type="button" onclick="window.history.back();">Cancel</button>
-              <button type="submit">Save Settings</button>
-            </form>
+          <div class="partyspace-settings-container">
+            <div id="partyspace-settings" class="partyspace-settings-2">
+              <h2>PartySpace Settings</h2>
+              <form>
+                <div class="form-group">
+                  <label for="partyspace-icon">Icon</label>
+                  <input type="file" id="partyspace-icon" name="partyspace-icon" />
+                  <small id="icon-dimension-warning" style="color: red; display: none">Icon must be 512x512 pixels or smaller.</small>
+                </div>
+                <div class="form-group">
+                  <label for="partyspace-banner">Banner</label>
+                  <input type="file" id="partyspace-banner" name="partyspace-banner" />
+                </div>
+                <div class="form-group">
+                  <label for="partyspace-name">Name</label>
+                  <input type="text" id="partyspace-name" name="partyspace-name" />
+                  <small id="name-char-count">0/32</small>
+                </div>
+                <div class="form-group">
+                  <label for="partyspace-description">Description</label>
+                  <textarea id="partyspace-description" name="partyspace-description"></textarea>
+                  <small id="description-char-count">0/2048</small>
+                </div>
+                <div class="form-group">
+                  <label for="partyspace-visibility">Visibility</label>
+                  <select id="partyspace-visibility" name="partyspace-privacy">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                  </select>
+                </div>
+                <button type="button" onclick="window.history.back();">Cancel</button>
+                <button type="submit">Save Settings</button>
+              </form>
+            </div>
+            <div id="chat-settings" class="partyspace-settings">
+              <h2>Chat Settings</h2>
+              <form>
+                <div class="form-group">
+                  <label for="enable-slowmode">Enable Slowmode</label>
+                  <label class="switch">
+                    <input type="checkbox" id="enable-slowmode" name="enable-slowmode" />
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label for="filter-keywords">Filter Keywords</label>
+                  <textarea id="filter-keywords" name="filter-keywords" placeholder="Enter keywords separated by commas"></textarea>
+                </div>
+                <button type="button" onclick="window.history.back();">Cancel</button>
+                <button type="submit">Save Settings</button>
+              </form>
+            </div>
+            <div id="role-management" class="partyspace-settings">
+              <h2>Role Management</h2>
+              <form>
+                <div class="form-group">
+                  <label for="role-name">Role Name</label>
+                  <select id="role-name" name="role-name">
+                    <option value="admin">Admin</option>
+                    <option value="member">Member</option>
+                  </select>
+                </div>
+                <div class="permissions-container">
+                  <label>
+                    <input type="checkbox" name="permissions" value="invite-users" />
+                    Invite Users
+                  </label>
+                  <label>
+                    <input type="checkbox" name="permissions" value="edit-roles" />
+                    Edit Roles
+                  </label>
+                  <label>
+                    <input type="checkbox" name="permissions" value="assign-roles" />
+                    Assign Roles
+                  </label>
+                  <label>
+                    <input type="checkbox" name="permissions" value="kick-member" />
+                    Remove Member
+                  </label>
+                  <label>
+                    <input type="checkbox" name="permissions" value="ban-member" />
+                    Ban Member
+                  </label>
+                  <label>
+                    <input type="checkbox" name="permissions" value="manage-partyspace" />
+                    Manage PartySpace
+                  </label>
+                </div>
+                <button type="button" onclick="window.history.back();">Cancel</button>
+                <button type="submit">Save Role</button>
+              </form>
+            </div>
+            <div id="assign-roles" class="partyspace-settings">
+              <h2>Assign Roles</h2>
+              <form>
+                <div class="form-group">
+                  <label for="select-member">Select Member</label>
+                  <select id="select-member" name="select-member">
+                    <option value="member1">Member 1</option>
+                    <option value="member2">Member 2</option>
+                    <option value="member3">Member 3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="select-role">Select Role</label>
+                  <select id="select-role" name="select-role">
+                    <option value="admin">Admin</option>
+                    <option value="member">Member</option>
+                  </select>
+                </div>
+                <button type="button" onclick="window.history.back();">Cancel</button>
+                <button type="submit">Assign Role</button>
+              </form>
+            </div>
+            <div id="manage-members" class="partyspace-settings">
+              <h2>Manage Members</h2>
+              <form>
+                <div class="form-group">
+                  <label for="select-member-action">Select Member</label>
+                  <select id="select-member-action" name="select-member-action">
+                    <option value="member1">Member 1</option>
+                    <option value="member2">Member 2</option>
+                    <option value="member3">Member 3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="member-action">Action</label>
+                  <select id="member-action" name="member-action">
+                    <option value="kick">Kick</option>
+                    <option value="ban">Ban</option>
+                    <option value="mute">Mute</option>
+                    <option value="unmute">Unmute</option>
+                    <option value="unban">Unban</option>
+                  </select>
+                </div>
+                <button type="button" onclick="window.history.back();">Cancel</button>
+                <button type="submit">Apply Action</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="partyspace.js"></script>
   </body>
 </html>

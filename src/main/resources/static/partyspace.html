@@ -24,11 +24,11 @@
           <div class="chatbox-nav-container">
             <ul class="chatbox-nav">
               <li class="nav-item"></li>
-              <li class="nav-item">Messages</li>
-              <li class="nav-item"><a href="partyspace-settings.html">Settings</a></li>
+              <li class="nav-item">My PartySpace</li>
+              <li class="nav-item"><a href="partyspace-settings.html">Manage</a></li>
             </ul>
           </div>
-          <div class="chatbox-messages">
+          <div class="chatbox-messages" id="chatbox-messages">
             <p>
               <strong>Member 1:</strong>
               Hello!
@@ -39,8 +39,8 @@
             </p>
           </div>
           <div class="chatbox-input">
-            <input type="text" placeholder="Type a message..." />
-            <button>Send</button>
+            <input type="text" id="message-input" placeholder="Type a message..." />
+            <button id="send-button">Send</button>
           </div>
         </div>
         <div class="profile-and-spaces">
@@ -71,5 +71,6 @@
         </div>
       </div>
     </div>
+    <script src="partyspace.js"></script>
   </body>
 </html>
