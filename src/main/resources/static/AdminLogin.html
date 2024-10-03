@@ -1,156 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PartyPulse Admin</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - PartyPulse</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #001f3f; /* Dark blue background */
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a192f; /* Dark blue background */
             color: #fff;
-        }
-        .nav-container {
-            background-color: #003366; /* Darker blue for the navbar */
-            padding: 15px;
-        }
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        .nav-links li {
-            margin: 0 20px;
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #ffcc00; /* Highlight color on hover */
-        }
-        .hero-section {
-            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('images/hero-background.jpg') no-repeat center center / cover; /* Add a background image */
-        }
-        .hero-content {
+            height: 100vh;
             text-align: center;
         }
-        .hero-content h1 {
-            font-size: 4rem;
-            margin: 0;
-        }
-        .hero-content h4 {
-            margin: 20px 0;
-            font-size: 1.5rem;
-        }
-        .btn-get-started {
-            background-color: #ffcc00; /* Button color */
-            color: #001f3f;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .btn-get-started:hover {
-            background-color: #ffd700; /* Button hover color */
-        }
         .container {
-            padding: 20px;
-        }
-        .section-home {
-            margin: 40px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .row-content {
-            max-width: 800px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .home-image img {
-            width: 100%;
-            max-width: 300px;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+            padding: 40px;
             border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 350px;
         }
-        @media (max-width: 768px) {
-            .row-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .home-image {
-                margin: 20px 0;
-            }
+        h1 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ffcc00; /* Yellow border */
+            border-radius: 5px;
+            outline: none;
+            background-color: #001f3f; /* Dark background for inputs */
+            color: #fff; /* White text */
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            box-shadow: 0 0 5px #ffcc00;
+        }
+        button {
+            background-color: #ffcc00;
+            color: #001f3f;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #ffd700;
+            transform: scale(1.05);
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        .error {
+            color: #ff0000;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-<div class="nav-placeholder"></div>
-<nav class="nav-container" id="navbar">
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#section-container">About</a></li>
-        <li><a href="partyspacelist.html">PartySpaces</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="signup.html">Register</a></li>
-    </ul>
-</nav>
-<section class="hero-section">
-    <div class="hero-content">
-        <h1>Party</h1>
-        <h1>Pulse</h1>
-        <h4>Connect with other gamers and find new friends!</h4>
-        <a href="login.html" class="btn-get-started">Get Started</a>
-    </div>
-</section>
-<div id="section-container" class="container">
-    <section class="section-home">
-        <div class="row-content">
-            <div class="content-text">
-                <h1>Find other gamers!</h1>
-                <p>Discover new friends and gaming partners.</p>
-                <p>PartyPulse is your go-to platform for connecting with fellow gamers. Find teammates for your favorite multiplayer games or just want to find new friends who share your passion for gaming.</p>
-            </div>
-            <div class="home-image">
-                <img src="images/home1.jpg" alt="Gamers Connecting" />
-            </div>
-        </div>
-    </section>
-    <section class="section-home">
-        <div class="row-content">
-            <div class="content-text">
-                <h1>Create a party space!</h1>
-                <p>Create your own party space and manage it the way you want to. Manage your party member roles and permissions with ease. Change whether you want your space to be public or private. Create your own party space today!</p>
-            </div>
-            <div class="home-image">
-                <img src="images/home3.jpg" alt="Creating a Party Space" />
-            </div>
-        </div>
-    </section>
-    <section class="section-home">
-        <div class="row-content">
-            <div class="content-text">
-                <h1>Join PartySpace!</h1>
-                <p>PartySpace is free and supports all platforms. Join now and start connecting with other gamers. Create your own party space and enjoy gaming with your new friends.</p>
-            </div>
-            <div class="home-image">
-                <img src="images/home2.jpg" alt="Joining PartySpace" />
-            </div>
-        </div>
-    </section>
+<div class="container">
+    <h1>Admin Login</h1>
+    <input type="text" id="username" value="Daisy" readonly>
+    <input type="password" id="password" value="daisy" readonly>
+    <button onclick="login()">Login</button>
+    <div class="error" id="error-message"></div>
+    <div class="footer">© 2024 PartyPulse</div>
 </div>
-<script src="navbar.js"></script>
+
+<script>
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Mock credentials
+        const validUsername = "Daisy";
+        const validPassword = "daisy";
+
+        // Check credentials
+        if (username === validUsername && password === validPassword) {
+            alert("Login successful! Redirecting to the admin dashboard...");
+            // window.location.href = "admin-dashboard.html"; // Uncomment for actual redirection
+        } else {
+            errorMessage.textContent = "Invalid username or password. Please try again.";
+        }
+    }
+</script>
 </body>
 </html>

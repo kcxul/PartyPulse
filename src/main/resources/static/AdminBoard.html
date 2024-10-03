@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PartyPulse Admin</title>
+    <title>PartyPulse Admin Dashboard</title>
     <link rel="stylesheet" href="style.css" />
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #001f3f; /* Dark blue background */
+            background-color: #0a192f; /* Dark blue background for admin */
             color: #fff;
         }
         .nav-container {
@@ -20,7 +20,7 @@
             list-style: none;
             padding: 0;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
         }
         .nav-links li {
             margin: 0 20px;
@@ -67,48 +67,70 @@
         .main-content {
             flex: 1;
             padding: 20px;
-            background-color: #002244; /* Lighter background for main content */
+            background-color: #001f3f; /* Lighter background for main content */
             border-radius: 5px;
         }
-        .section-home {
-            margin-bottom: 40px;
-        }
-        .section-home h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .row-content {
+        .header {
             display: flex;
-            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-        .home-image img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
+        .header h1 {
+            font-size: 2rem;
         }
-        @media (max-width: 768px) {
-            .row-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .home-image {
-                margin: 20px 0;
-            }
+        .header button {
+            background-color: #ffcc00;
+            color: #001f3f;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .header button:hover {
+            background-color: #ffd700;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .section p {
+            margin-bottom: 20px;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .data-table th, .data-table td {
+            padding: 15px;
+            border: 1px solid #003366;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #003366; /* Dark blue for header */
+            color: #ffcc00; /* Highlight color for headers */
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #002244; /* Alternate row color */
+        }
+        .data-table tr:hover {
+            background-color: #005577; /* Hover effect for rows */
         }
     </style>
 </head>
 <body>
-<div class="nav-placeholder"></div>
-<nav class="nav-container" id="navbar">
+<nav class="nav-container">
     <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="#section-container">About</a></li>
         <li><a href="partyspacelist.html">PartySpaces</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="signup.html">Register</a></li>
+        <li><a href="logout.html">Logout</a></li>
     </ul>
 </nav>
 <div class="container">
@@ -119,47 +141,51 @@
             <li><a href="party-management.html">Party Management</a></li>
             <li><a href="analytics.html">Analytics</a></li>
             <li><a href="settings.html">Settings</a></li>
-            <li><a href="logout.html">Logout</a></li>
         </ul>
     </aside>
     <div class="main-content">
-        <section class="section-home">
-            <h1>Welcome to the Admin Dashboard!</h1>
-            <p>Manage your users, parties, and monitor activity efficiently.</p>
-        </section>
-        <section class="section-home">
-            <h1>Find other gamers!</h1>
-            <div class="row-content">
-                <div class="content-text">
-                    <p>Discover new friends and gaming partners. PartyPulse is your go-to platform for connecting with fellow gamers.</p>
-                </div>
-                <div class="home-image">
-                    <img src="images/home1.jpg" alt="Gamers Connecting" />
-                </div>
-            </div>
-        </section>
-        <section class="section-home">
-            <h1>Create a party space!</h1>
-            <div class="row-content">
-                <div class="content-text">
-                    <p>Create your own party space and manage it the way you want to. Control member roles and permissions with ease.</p>
-                </div>
-                <div class="home-image">
-                    <img src="images/home3.jpg" alt="Creating a Party Space" />
-                </div>
-            </div>
-        </section>
-        <section class="section-home">
-            <h1>Join PartySpace!</h1>
-            <div class="row-content">
-                <div class="content-text">
-                    <p>PartySpace is free and supports all platforms. Join now and start connecting with other gamers.</p>
-                </div>
-                <div class="home-image">
-                    <img src="images/home2.jpg" alt="Joining PartySpace" />
-                </div>
-            </div>
-        </section>
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <button onclick="alert('Manage your settings here!')">Settings</button>
+        </div>
+        <div class="section">
+            <h2>Overview</h2>
+            <p>Welcome to the Admin Dashboard! Here you can manage users, parties, and view analytics.</p>
+        </div>
+        <div class="section">
+            <h2>User Management</h2>
+            <p>Current Users:</p>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Gamer1</td>
+                    <td><span style="color: #28a745;">Active</span></td>
+                    <td><button onclick="alert('View user details')">View</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Gamer2</td>
+                    <td><span style="color: #ffcc00;">Pending</span></td>
+                    <td><button onclick="alert('View user details')">View</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Gamer3</td>
+                    <td><span style="color: #ff0000;">Banned</span></td>
+                    <td><button onclick="alert('View user details')">View</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <script src="navbar.js"></script>
