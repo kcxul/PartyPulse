@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PartySpaces</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="partyspace.css" />
+  </head>
+  <body class="partyspace-body">
+    <div class="partyspace-body-container">
+      <div class="party-container">
+        <div class="chatbox">
+          <div class="chatbox-nav-container">
+            <nav class="chatbox-nav">
+              <ul>
+                <li><a>PartySpace Settings</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div id="partyspace-settings" class="partyspace-settings">
+            <h2>PartySpace Settings</h2>
+            <form>
+              <div class="form-group">
+                <label for="partyspace-icon">Icon</label>
+                <input type="file" id="partyspace-icon" name="partyspace-icon" />
+              </div>
+              <div class="form-group">
+                <label for="partyspace-banner">Banner</label>
+                <input type="file" id="partyspace-banner" name="partyspace-banner" />
+              </div>
+              <div class="form-group">
+                <label for="partyspace-name">Name</label>
+                <input type="text" id="partyspace-name" name="partyspace-name" />
+              </div>
+              <div class="form-group">
+                <label for="partyspace-description">Description</label>
+                <textarea id="partyspace-description" name="partyspace-description"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="filter-keywords">Filter Keywords</label>
+                <input type="text" id="filter-keywords" name="filter-keywords" placeholder="Comma separated keywords" />
+              </div>
+              <button type="button" onclick="window.history.back();">Cancel</button>
+              <button type="submit">Save Settings</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

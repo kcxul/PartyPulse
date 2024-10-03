@@ -1,7 +1,7 @@
 .partyspace-body {
   display: flex;
   align-items: center;
-  background-color: black;
+  background-color: #202020;
   color: white;
   height: 100dvh;
   width: 100dvw;
@@ -27,7 +27,7 @@
   height: 100%;
 }
 
-.members-list {
+.left-column-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,6 +39,45 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.member-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  border-radius: 12px;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.text-logo {
+  font-family: var(--font-press-start-2p);
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  margin: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #444;
+  margin: 10px;
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .chatbox {
@@ -120,6 +159,24 @@
   order: -1;
 }
 
+.profile-picture-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #444;
+  margin: 10px;
+}
+
+.profile-picture-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 .partyspaces-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -134,4 +191,152 @@
   width: 100%;
   padding: 10px;
   cursor: pointer;
+}
+
+.chatbox-nav-container {
+  display: flex;
+  justify-content: center; /* Center the nav container */
+}
+
+.chatbox-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #202020;
+  box-sizing: border-box;
+}
+
+.chatbox-nav .nav-item {
+  flex: 1;
+  text-align: center;
+}
+
+.chatbox-nav .nav-item:first-child {
+  text-align: left;
+}
+
+.chatbox-nav .nav-item:last-child {
+  text-align: right;
+}
+
+.chatbox-nav li {
+  list-style-type: none;
+  color: white;
+}
+
+.chatbox-nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/* PartySpace Settings */
+
+.partyspace-settings {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+}
+
+#partyspace-description {
+  height: 150px;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  color: white;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #444;
+  color: white;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  background-color: #555;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #666;
+}
+
+button:active {
+  background-color: #777;
+}
+
+button:disabled {
+  background-color: #333;
+  cursor: not-allowed;
+}
+
+.browse-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.browse-button:hover {
+  background-color: #666;
+}
+
+.browse-button:active {
+  background-color: #777;
+}
+
+.browse-button:disabled {
+  background-color: #333;
+  cursor: not-allowed;
+}
+
+.edit-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
 }
