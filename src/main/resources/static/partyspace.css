@@ -34,7 +34,7 @@
   justify-content: center;
   /* border-radius: 12px;
   margin: 10px; */
-  width: calc(10% - 20px);
+  width: calc(20% - 20px);
   background-color: #202020;
   position: relative;
   overflow: hidden;
@@ -83,6 +83,7 @@
 .chatbox {
   display: flex;
   flex-direction: column;
+  width: 100%;
   flex-grow: 1;
   background-color: #222;
   /* border-radius: 12px;
@@ -93,9 +94,17 @@
 .chatbox-messages {
   flex-grow: 1;
   overflow-y: auto;
-  width: 100%;
+  width: auto;
   padding: 10px;
+
   box-sizing: border-box;
+}
+
+.chatbox-messages p {
+  width: 90%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 10px 10px;
 }
 
 .chatbox-input {
@@ -138,7 +147,7 @@
   justify-content: space-evenly;
   /* border-radius: 12px;
   margin: 10px; */
-  width: calc(10% - 20px);
+  width: calc(20% - 20px);
   background-color: #202020;
   position: relative;
   overflow: hidden;
