@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="login-body">
-    <div class="top-container">
-      <div>
-        <button class="btn-back" onclick="window.history.back();">Return</button>
-      </div>
-    </div>
-    <section class="hero-section-login">
-      <div class="hero-content">
-        <h1>Login</h1>
-      </div>
-      <div class="login-container">
-        <form onsubmit="return handleLogin(event);">
-          <input type="text" id="username" placeholder="Username" required" /> <input type="password" id="password" placeholder="Password"
-          required" />
-          <button class="btn-login" type="submit">Login</button>
-        </form>
-        <p>
-          Need an account?
-          <a href="signup.html">Register</a>
-        </p>
-      </div>
-    </section>
-    <script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-body">
+<div class="top-container">
+  <div>
+    <button class="btn-back" onclick="window.history.back();">Return</button>
+  </div>
+</div>
+<section class="hero-section-login">
+  <div class="hero-content">
+    <h1>Login</h1>
+  </div>
+  <div class="login-container">
+    <form onsubmit="return handleLogin(event);">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button class="btn-login" type="submit">Login</button>
+    </form>
+    <p>
+      Need an account?
+      <a href="signup.html">Register</a>
+    </p>
+    <p>
+      <a href="AdminLogin.html">Admin Login</a>
+    </p>
+  </div>
+</section>
+<script src="script.js"></script>
+</body>
 </html>

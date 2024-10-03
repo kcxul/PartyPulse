@@ -97,49 +97,49 @@
         <td>User1</td>
         <td>user1@example.com</td>
         <td>Flagged</td>
-        <td><button onclick="banUser('User1')">Ban</button></td>
+        <td><button onclick="banUser('User1', this)">Ban</button></td>
     </tr>
     <tr>
         <td>User2</td>
         <td>user2@example.com</td>
         <td>Active</td>
-        <td><button onclick="banUser('User2')">Ban</button></td>
+        <td><button onclick="banUser('User2', this)">Ban</button></td>
     </tr>
     <tr>
         <td>User3</td>
         <td>user3@example.com</td>
         <td>Flagged</td>
-        <td><button onclick="banUser('User3')">Ban</button></td>
+        <td><button onclick="banUser('User3', this)">Ban</button></td>
     </tr>
     <tr>
         <td>User4</td>
         <td>user4@example.com</td>
         <td>Active</td>
-        <td><button onclick="banUser('User4')">Ban</button></td>
+        <td><button onclick="banUser('User4', this)">Ban</button></td>
     </tr>
     <tr>
         <td>User5</td>
         <td>user5@example.com</td>
         <td>Flagged</td>
-        <td><button onclick="banUser('User5')">Ban</button></td>
+        <td><button onclick="banUser('User5', this)">Ban</button></td>
     </tr>
     <tr>
         <td>User6</td>
         <td>user6@example.com</td>
         <td>Active</td>
-        <td><button onclick="banUser('User6')">Ban</button></td>
+        <td><button onclick="banUser('User6', this)">Ban</button></td>
     </tr>
     <tr>
         <td>User7</td>
         <td>user7@example.com</td>
         <td>Flagged</td>
-        <td><button onclick="banUser('User7')">Ban</button></td>
+        <td><button onclick="banUser('User7', this)">Ban</button></td>
     </tr>
     <tr>
         <td>User8</td>
         <td>user8@example.com</td>
         <td>Active</td>
-        <td><button onclick="banUser('User8')">Ban</button></td>
+        <td><button onclick="banUser('User8', this)">Ban</button></td>
     </tr>
     </tbody>
 </table>
@@ -167,15 +167,22 @@
         }
     }
 
-    function banUser(username) {
-        const userRow = [...document.getElementById("userTable").rows].find(row => row.cells[0].textContent === username);
-        if (userRow) {
-            userRow.cells[2].innerHTML = '<span class="status-banned">Banned</span>';
-            userRow.cells[3].innerHTML = ''; // Clear action button
-            document.getElementById("errorMessage").textContent = '';
+    function banUser(username, button) {
+        const userRow = button.closest('tr');
+        if (userRow.cells[2].textContent.includes('Banned')) {
+            unbanUser(userRow);
         } else {
-            document.getElementById("errorMessage").textContent = 'Error: User not found in flagged list.';
+            userRow.cells[2].innerHTML = '<span class="status-banned">Banned</span>';
+            userRow.cells[3].innerHTML = `<button onclick="unbanUser(this)">Unban</button>`;
+            document.getElementById("errorMessage").textContent = '';
         }
+    }
+
+    function unbanUser(button) {
+        const userRow = button.closest('tr');
+        userRow.cells[2].innerHTML = 'Active'; // Change status back to Active
+        userRow.cells[3].innerHTML = `<button onclick="banUser('${userRow.cells[0].textContent}', this)">Ban</button>`; // Add ban button back
+        document.getElementById("errorMessage").textContent = '';
     }
 </script>
 </body>
