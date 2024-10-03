@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PartyPulse Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0a192f; /* Dark blue background for admin */
+            font-family: 'Arial', sans-serif;
+            background-color: #0a192f;
             color: #fff;
-        }
-        .nav-container {
-            background-color: #003366; /* Darker blue for the navbar */
-            padding: 15px;
-        }
-        .nav-links {
-            list-style: none;
-            padding: 0;
             display: flex;
-            justify-content: flex-start;
+            flex-direction: column;
         }
-        .nav-links li {
-            margin: 0 20px;
+        header {
+            background-color: #003366;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-        .nav-links a {
+        header h1 {
+            color: #ffcc00;
+            margin: 0;
+            font-size: 2rem;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #001f3f;
+            padding: 15px 0;
+        }
+        nav a {
             color: #ffffff;
             text-decoration: none;
-            transition: color 0.3s;
+            padding: 10px 15px;
+            margin: 0 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .nav-links a:hover {
-            color: #ffcc00; /* Highlight color on hover */
+        nav a:hover {
+            background-color: #ffcc00;
+            color: #001f3f;
         }
         .container {
             display: flex;
+            flex: 1;
             padding: 20px;
+            justify-content: space-between;
+            gap: 20px;
         }
         .sidebar {
-            width: 250px;
-            background-color: #003366; /* Sidebar background color */
+            width: 200px;
+            background-color: #003366;
             padding: 20px;
             border-radius: 5px;
-            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         .sidebar h2 {
             margin-bottom: 20px;
             text-align: center;
-            color: #ffcc00; /* Highlight color for sidebar title */
+            color: #ffcc00;
         }
         .sidebar ul {
             list-style: none;
@@ -59,135 +74,113 @@
         .sidebar ul li a {
             color: #ffffff;
             text-decoration: none;
-            transition: color 0.3s;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
         .sidebar ul li a:hover {
-            color: #ffd700; /* Button hover color */
+            background-color: #ffd700;
         }
         .main-content {
             flex: 1;
             padding: 20px;
-            background-color: #001f3f; /* Lighter background for main content */
+            background-color: #001f3f;
             border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 2rem;
-        }
-        .header button {
-            background-color: #ffcc00;
-            color: #001f3f;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .header button:hover {
-            background-color: #ffd700;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        .section h2 {
+        .main-content h2 {
             font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        .section p {
+            color: #ffcc00;
             margin-bottom: 20px;
         }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        .dashboard-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-        .data-table th, .data-table td {
+        .card {
+            background-color: #003366;
             padding: 15px;
-            border: 1px solid #003366;
-            text-align: left;
+            border-radius: 5px;
+            flex: 1 1 calc(33% - 20px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
         }
-        .data-table th {
-            background-color: #003366; /* Dark blue for header */
-            color: #ffcc00; /* Highlight color for headers */
+        .card:hover {
+            transform: translateY(-5px);
         }
-        .data-table tr:nth-child(even) {
-            background-color: #002244; /* Alternate row color */
+        .card h3 {
+            margin: 0;
+            color: #ffcc00;
         }
-        .data-table tr:hover {
-            background-color: #005577; /* Hover effect for rows */
+        .card p {
+            color: #ffffff;
+        }
+        footer {
+            background-color: #003366;
+            text-align: center;
+            padding: 10px;
+            color: #ffffff;
+            position: relative;
         }
     </style>
 </head>
 <body>
-<nav class="nav-container">
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#section-container">About</a></li>
-        <li><a href="partyspacelist.html">PartySpaces</a></li>
-        <li><a href="logout.html">Logout</a></li>
-    </ul>
+<header>
+    <h1>PartyPulse Admin</h1>
+    <button onclick="alert('Manage your settings here!')" style="background-color: #ffcc00; color: #001f3f; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Settings</button>
+</header>
+<nav>
+    <a href="manageUsers.html">Manage Users</a>
+    <a href="moderateContent.html">Moderate Content</a>
+    <a href="statistics.html">Statistics</a>
+    <a href="moderateReviews.html">Moderate Reviews</a>
+
 </nav>
 <div class="container">
     <aside class="sidebar">
         <h2>Admin Menu</h2>
         <ul>
-            <li><a href="user-management.html">User Management</a></li>
-            <li><a href="party-management.html">Party Management</a></li>
-            <li><a href="analytics.html">Analytics</a></li>
-            <li><a href="settings.html">Settings</a></li>
+            <li><a href="manageUsers.html">User Management</a></li>
+            <li><a href="moderateContent.html">Moderate Content</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="moderateReviews.html">Moderate Reviews</a></li>
         </ul>
     </aside>
     <div class="main-content">
-        <div class="header">
-            <h1>Admin Dashboard</h1>
-            <button onclick="alert('Manage your settings here!')">Settings</button>
-        </div>
-        <div class="section">
-            <h2>Overview</h2>
-            <p>Welcome to the Admin Dashboard! Here you can manage users, parties, and view analytics.</p>
-        </div>
-        <div class="section">
-            <h2>User Management</h2>
-            <p>Current Users:</p>
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Username</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Gamer1</td>
-                    <td><span style="color: #28a745;">Active</span></td>
-                    <td><button onclick="alert('View user details')">View</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Gamer2</td>
-                    <td><span style="color: #ffcc00;">Pending</span></td>
-                    <td><button onclick="alert('View user details')">View</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Gamer3</td>
-                    <td><span style="color: #ff0000;">Banned</span></td>
-                    <td><button onclick="alert('View user details')">View</button></td>
-                </tr>
-                </tbody>
-            </table>
+        <h2>Overview</h2>
+        <p>Welcome to the Admin Dashboard! Here you can manage users, moderate content, view statistics, and handle moderate reviews.</p>
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>1500</p>
+            </div>
+            <div class="card">
+                <h3>Pending Approvals</h3>
+                <p>75</p>
+            </div>
+            <div class="card">
+                <h3>Moderate Reviews</h3>
+                <p>12</p>
+            </div>
+            <div class="card">
+                <h3>Active Subscriptions</h3>
+                <p>350</p>
+            </div>
+            <div class="card">
+                <h3>Recent Activity</h3>
+                <p>10 new signups today!</p>
+            </div>
+            <div class="card">
+                <h3>Moderated Content</h3>
+                <p>50 pieces reviewed</p>
+            </div>
         </div>
     </div>
 </div>
+<footer>
+    &copy; 2024 PartyPulse. All Rights Reserved.
+</footer>
 <script src="navbar.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users - PartyPulse</title>
+    <title>Manage User Access - PartyPulse</title>
     <style>
         body {
             margin: 0;
@@ -11,17 +11,17 @@
             background-color: #001f3f; /* Dark blue background */
             color: #fff;
             padding: 20px;
+            text-align: center;
         }
         h1 {
-            text-align: center;
             color: #ffcc00; /* Highlight color for headings */
+            margin-bottom: 20px;
         }
         p {
-            text-align: center;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            margin: 10px 0;
         }
         .search-container {
-            text-align: center;
             margin-bottom: 20px;
         }
         input[type="text"] {
@@ -46,51 +46,49 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0 auto;
-            max-width: 900px;
-            background-color: #002244; /* Lighter background for table */
-            border-radius: 5px;
-            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         thead {
-            background-color: #003366; /* Darker blue for the header */
+            background-color: #003366; /* Dark blue for header */
         }
         th, td {
             padding: 15px;
+            border: 1px solid #003366; /* Darker border for table */
             text-align: left;
-            border-bottom: 1px solid #444;
         }
         th {
-            color: #ffcc00; /* Highlight color for table header */
+            color: #ffcc00; /* Highlight color for headers */
+        }
+        tr:nth-child(even) {
+            background-color: #002244; /* Alternate row color */
         }
         tr:hover {
-            background-color: #003366; /* Darker row on hover */
+            background-color: #005577; /* Hover effect for rows */
         }
-        .action-button {
-            background-color: #d9534f; /* Red for removal */
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .status-banned {
+            color: #d9534f; /* Red for banned status */
         }
-        .action-button:hover {
-            background-color: #c9302c; /* Darker red on hover */
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-<h1>Manage Users</h1>
-<p>Here you can view and manage user accounts.</p>
+<h1>Manage User Access</h1>
+<p>Review flagged accounts and manage user access.</p>
+
 <div class="search-container">
-    <input type="text" placeholder="Search Users..." onkeyup="searchUsers()">
+    <input type="text" id="searchUser" placeholder="Search Users..." onkeyup="searchUsers()">
 </div>
+
 <table id="userTable">
     <thead>
     <tr>
         <th>Username</th>
         <th>Email</th>
+        <th>Status</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -98,60 +96,61 @@
     <tr>
         <td>User1</td>
         <td>user1@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Flagged</td>
+        <td><button onclick="banUser('User1')">Ban</button></td>
     </tr>
     <tr>
         <td>User2</td>
         <td>user2@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Active</td>
+        <td><button onclick="banUser('User2')">Ban</button></td>
     </tr>
     <tr>
         <td>User3</td>
         <td>user3@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Flagged</td>
+        <td><button onclick="banUser('User3')">Ban</button></td>
     </tr>
     <tr>
         <td>User4</td>
         <td>user4@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Active</td>
+        <td><button onclick="banUser('User4')">Ban</button></td>
     </tr>
     <tr>
         <td>User5</td>
         <td>user5@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Flagged</td>
+        <td><button onclick="banUser('User5')">Ban</button></td>
     </tr>
     <tr>
         <td>User6</td>
         <td>user6@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Active</td>
+        <td><button onclick="banUser('User6')">Ban</button></td>
     </tr>
     <tr>
         <td>User7</td>
         <td>user7@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Flagged</td>
+        <td><button onclick="banUser('User7')">Ban</button></td>
     </tr>
     <tr>
         <td>User8</td>
         <td>user8@example.com</td>
-        <td><button class="action-button">Remove</button></td>
-    </tr>
-    <tr>
-        <td>User9</td>
-        <td>user9@example.com</td>
-        <td><button class="action-button">Remove</button></td>
-    </tr>
-    <tr>
-        <td>User10</td>
-        <td>user10@example.com</td>
-        <td><button class="action-button">Remove</button></td>
+        <td>Active</td>
+        <td><button onclick="banUser('User8')">Ban</button></td>
     </tr>
     </tbody>
 </table>
+
+<div class="error-message" id="errorMessage"></div>
+
 <button onclick="window.history.back();">Back to Admin Board</button>
 
 <script>
     function searchUsers() {
-        const input = document.querySelector('input[type="text"]');
+        const input = document.getElementById('searchUser');
         const filter = input.value.toLowerCase();
         const table = document.getElementById("userTable");
         const trs = table.getElementsByTagName("tr");
@@ -165,6 +164,17 @@
                 }
             }
             trs[i].style.display = found ? "" : "none";
+        }
+    }
+
+    function banUser(username) {
+        const userRow = [...document.getElementById("userTable").rows].find(row => row.cells[0].textContent === username);
+        if (userRow) {
+            userRow.cells[2].innerHTML = '<span class="status-banned">Banned</span>';
+            userRow.cells[3].innerHTML = ''; // Clear action button
+            document.getElementById("errorMessage").textContent = '';
+        } else {
+            document.getElementById("errorMessage").textContent = 'Error: User not found in flagged list.';
         }
     }
 </script>

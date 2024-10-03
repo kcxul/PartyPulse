@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistics - PartyPulse</title>
+    <title>View Usage Statistics - PartyPulse</title>
     <style>
         body {
             margin: 0;
@@ -21,28 +21,6 @@
             font-size: 1.2rem;
             margin: 10px 0;
         }
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .stat-box {
-            background-color: #002244; /* Lighter background for stat boxes */
-            border-radius: 10px;
-            padding: 20px;
-            margin: 0 15px;
-            flex: 1;
-            max-width: 250px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        .stat-box h2 {
-            color: #ffcc00; /* Highlight color for stat titles */
-            margin: 0 0 10px 0;
-        }
-        .stat-value {
-            font-size: 2rem;
-            color: #ffffff;
-        }
         button {
             background-color: #ffcc00; /* Button color */
             color: #001f3f;
@@ -51,88 +29,66 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: 20px;
+            margin: 10px;
         }
         button:hover {
             background-color: #ffd700; /* Button hover color */
         }
-        .chart {
-            margin-top: 40px;
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
         }
-        /* Chart styling */
-        canvas {
-            max-width: 800px;
+        .stats-container {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #003366; /* Dark blue for the stats area */
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .stat {
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+        .chart {
             width: 100%;
-            height: auto;
+            height: 300px;
+            background-color: #002244; /* Placeholder for chart */
+            border-radius: 5px;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-<h1>Usage Statistics</h1>
-<p>Monitor application performance and user engagement.</p>
+<h1>View Usage Statistics</h1>
+<p>Analyze application usage data.</p>
 
 <div class="stats-container">
-    <div class="stat-box">
-        <h2>Total Active Users</h2>
-        <div class="stat-value" id="active-users">100</div>
-    </div>
-    <div class="stat-box">
-        <h2>Total Groups</h2>
-        <div class="stat-value" id="total-groups">20</div>
-    </div>
+    <h2>Key Statistics</h2>
+    <div class="stat">Total Users: <strong>1,500</strong></div>
+    <div class="stat">Active Sessions Today: <strong>300</strong></div>
+    <div class="stat">Total Subscriptions: <strong>650</strong></div>
+    <div class="stat">Average Session Duration: <strong>15 mins</strong></div>
+    <div class="chart" id="chartPlaceholder">[Chart Placeholder]</div>
 </div>
 
-<div class="chart">
-    <canvas id="usageChart"></canvas>
+<div>
+    <button onclick="exportData()">Export Data</button>
 </div>
+
+<div class="error-message" id="exportMessage"></div>
 
 <button onclick="window.history.back();">Back to Admin Board</button>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Sample data for the chart
-    const ctx = document.getElementById('usageChart').getContext('2d');
-    const usageChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Active Users', 'Total Groups'],
-            datasets: [{
-                label: 'Statistics',
-                data: [100, 20],
-                backgroundColor: [
-                    'rgba(255, 204, 0, 0.6)',
-                    'rgba(0, 38, 64, 0.6)'
-                ],
-                borderColor: [
-                    'rgba(255, 204, 0, 1)',
-                    'rgba(0, 38, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#ffffff'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: '#ffffff'
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#ffffff'
-                    }
-                }
-            }
+    function exportData() {
+        // Simulating export success/failure
+        const success = Math.random() > 0.3; // 70% chance of success
+        if (success) {
+            document.getElementById("exportMessage").textContent = 'Data exported successfully.';
+        } else {
+            document.getElementById("exportMessage").textContent = 'Error: Export failed. Please try again.';
         }
-    });
+    }
 </script>
 </body>
 </html>

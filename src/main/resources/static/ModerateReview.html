@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moderate Reviews - PartyPulse</title>
+  <style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #001f3f; /* Dark blue background */
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    h1 {
+        color: #ffcc00; /* Highlight color for headings */
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+    .search-container {
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        padding: 10px;
+        width: 250px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+    }
+    button {
+        background-color: #ffcc00; /* Button color */
+        color: #001f3f;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #ffd700; /* Button hover color */
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    thead {
+        background-color: #003366; /* Dark blue for header */
+    }
+    th, td {
+        padding: 15px;
+        border: 1px solid #003366; /* Darker border for table */
+        text-align: left;
+    }
+    th {
+        color: #ffcc00; /* Highlight color for headers */
+    }
+    tr:nth-child(even) {
+        background-color: #002244; /* Alternate row color */
+    }
+    tr:hover {
+        background-color: #005577; /* Hover effect for rows */
+    }
+    .error-message {
+        color: #ff4444;
+        margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>Moderate Reviews</h1>
+<p>Monitor and manage user feedback.</p>
+
+<div class="search-container">
+  <input type="text" id="searchReview" placeholder="Search Reviews..." onkeyup="searchReviews()">
+</div>
+
+<table id="reviewTable">
+  <thead>
+  <tr>
+    <th>Review ID</th>
+    <th>User</th>
+    <th>Content</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>R001</td>
+    <td>User1</td>
+    <td>This is an inappropriate review.</td>
+    <td><button onclick="deleteReview('R001')">Delete</button></td>
+  </tr>
+  <tr>
+    <td>R002</td>
+    <td>User2</td>
+    <td>Great service and atmosphere!</td>
+    <td><button onclick="deleteReview('R002')">Delete</button></td>
+  </tr>
+  <tr>
+    <td>R003</td>
+    <td>User3</td>
+    <td>Worst experience ever, will not return!</td>
+    <td><button onclick="deleteReview('R003')">Delete</button></td>
+  </tr>
+  <tr>
+    <td>R004</td>
+    <td>User4</td>
+    <td>The food was amazing!</td>
+    <td><button onclick="deleteReview('R004')">Delete</button></td>
+  </tr>
+  <tr>
+    <td>R005</td>
+    <td>User5</td>
+    <td>Staff was rude and unhelpful.</td>
+    <td><button onclick="deleteReview('R005')">Delete</button></td>
+  </tr>
+  <tr>
+    <td>R006</td>
+    <td>User6</td>
+    <td>I had a fantastic time!</td>
+    <td><button onclick="deleteReview('R006')">Delete</button></td>
+  </tr>
+  <tr>
+    <td>R007</td>
+    <td>User7</td>
+    <td>Overpriced and underwhelming.</td>
+    <td><button onclick="deleteReview('R007')">Delete</button></td>
+  </tr>
+  <tr>
+    <td>R008</td>
+    <td>User8</td>
+    <td>Clean and well-maintained venue.</td>
+    <td><button onclick="deleteReview('R008')">Delete</button></td>
+  </tr>
+  <!-- More review rows as needed -->
+  </tbody>
+</table>
+
+<div class="error-message" id="errorReviewMessage"></div>
+
+<button onclick="window.history.back();">Back to Admin Board</button>
+
+<script>
+  function searchReviews() {
+      const input = document.getElementById('searchReview');
+      const filter = input.value.toLowerCase();
+      const table = document.getElementById("reviewTable");
+      const trs = table.getElementsByTagName("tr");
+      for (let i = 1; i < trs.length; i++) {
+          const tds = trs[i].getElementsByTagName("td");
+          let found = false;
+          for (let j = 0; j < tds.length - 1; j++) {
+              if (tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
+                  found = true;
+                  break;
+              }
+          }
+          trs[i].style.display = found ? "" : "none";
+      }
+  }
+
+  function deleteReview(reviewId) {
+      const reviewRow = [...document.getElementById("reviewTable").rows].find(row => row.cells[0].textContent === reviewId);
+      if (reviewRow) {
+          reviewRow.remove();
+          document.getElementById("errorReviewMessage").textContent = 'Review successfully deleted.';
+      } else {
+          document.getElementById("errorReviewMessage").textContent = 'Error: Review no longer exists.';
+      }
+  }
+</script>
+</body>
+</html>

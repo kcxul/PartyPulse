@@ -3,98 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - PartyPulse</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <title>PartyPulse Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #0a192f; /* Dark blue background */
+            font-family: 'Arial', sans-serif;
+            background-color: #0a192f;
             color: #fff;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+        }
+        header {
+            background-color: #003366;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-        .container {
-            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            width: 350px;
-        }
-        h1 {
+        header h1 {
             color: #ffcc00;
-            margin-bottom: 20px;
+            margin: 0;
             font-size: 2rem;
         }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ffcc00; /* Yellow border */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #001f3f;
+            padding: 15px 0;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 15px;
             border-radius: 5px;
-            outline: none;
-            background-color: #001f3f; /* Dark background for inputs */
-            color: #fff; /* White text */
+            transition: background-color 0.3s;
         }
-        input[type="text"]:focus, input[type="password"]:focus {
-            box-shadow: 0 0 5px #ffcc00;
-        }
-        button {
+        nav a:hover {
             background-color: #ffcc00;
             color: #001f3f;
-            border: none;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #003366;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .sidebar h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffcc00;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+        .sidebar ul li a {
+            color: #ffffff;
+            text-decoration: none;
             padding: 10px;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            width: 100%;
+            transition: background-color 0.3s;
         }
-        button:hover {
+        .sidebar ul li a:hover {
             background-color: #ffd700;
-            transform: scale(1.05);
         }
-        .footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #ccc;
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #001f3f;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-        .error {
-            color: #ff0000;
-            margin-top: 10px;
+        .main-content h2 {
+            font-size: 1.5rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        .dashboard-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background-color: #003366;
+            padding: 15px;
+            border-radius: 5px;
+            flex: 1 1 calc(33% - 20px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            margin: 0;
+            color: #ffcc00;
+        }
+        .card p {
+            color: #ffffff;
+        }
+        footer {
+            background-color: #003366;
+            text-align: center;
+            padding: 10px;
+            color: #ffffff;
+            position: relative;
         }
     </style>
 </head>
 <body>
+<header>
+    <h1>PartyPulse Admin</h1>
+    <button onclick="alert('Manage your settings here!')" style="background-color: #ffcc00; color: #001f3f; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Settings</button>
+</header>
+<nav>
+    <a href="manageUsers.html">Manage Users</a>
+    <a href="moderateContent.html">Moderate Content</a>
+    <a href="statistics.html">Statistics</a>
+    <a href="moderateReviews.html">Moderate Reviews</a>
+</nav>
 <div class="container">
-    <h1>Admin Login</h1>
-    <input type="text" id="username" value="Daisy" readonly>
-    <input type="password" id="password" value="daisy" readonly>
-    <button onclick="login()">Login</button>
-    <div class="error" id="error-message"></div>
-    <div class="footer">© 2024 PartyPulse</div>
+    <aside class="sidebar">
+        <h2>Admin Menu</h2>
+        <ul>
+            <li><a href="manageUsers.html">User Management</a></li>
+            <li><a href="moderateContent.html">Moderate Content</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="moderateReviews.html">Moderate Reviews</a></li>
+        </ul>
+    </aside>
+    <div class="main-content">
+        <h2>Overview</h2>
+        <p>Welcome to the Admin Dashboard! Here you can manage users, moderate content, view statistics, and handle moderate reviews.</p>
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>1500</p>
+            </div>
+            <div class="card">
+                <h3>Pending Approvals</h3>
+                <p>75</p>
+            </div>
+            <div class="card">
+                <h3>Moderate Reviews</h3>
+                <p>12</p>
+            </div>
+            <div class="card">
+                <h3>Active Subscriptions</h3>
+                <p>350</p>
+            </div>
+            <div class="card">
+                <h3>Recent Activity</h3>
+                <p>10 new signups today!</p>
+            </div>
+            <div class="card">
+                <h3>Moderated Content</h3>
+                <p>50 pieces reviewed</p>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script>
-    function login() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const errorMessage = document.getElementById('error-message');
-
-        // Mock credentials
-        const validUsername = "Daisy";
-        const validPassword = "daisy";
-
-        // Check credentials
-        if (username === validUsername && password === validPassword) {
-            alert("Login successful! Redirecting to the admin dashboard...");
-            // window.location.href = "admin-dashboard.html"; // Uncomment for actual redirection
-        } else {
-            errorMessage.textContent = "Invalid username or password. Please try again.";
-        }
-    }
-</script>
+<footer>
+    &copy; 2024 PartyPulse. All Rights Reserved.
+</footer>
+<script src="navbar.js"></script>
 </body>
 </html>

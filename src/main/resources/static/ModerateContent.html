@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moderate Content - PartyPulse</title>
+    <title>Moderate Services - PartyPulse</title>
     <style>
         body {
             margin: 0;
@@ -11,17 +11,17 @@
             background-color: #001f3f; /* Dark blue background */
             color: #fff;
             padding: 20px;
+            text-align: center;
         }
         h1 {
-            text-align: center;
             color: #ffcc00; /* Highlight color for headings */
+            margin-bottom: 20px;
         }
         p {
-            text-align: center;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            margin: 10px 0;
         }
         .search-container {
-            text-align: center;
             margin-bottom: 20px;
         }
         input[type="text"] {
@@ -46,110 +46,132 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0 auto;
-            max-width: 900px;
-            background-color: #002244; /* Lighter background for table */
-            border-radius: 5px;
-            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         thead {
-            background-color: #003366; /* Darker blue for the header */
+            background-color: #003366; /* Dark blue for header */
         }
         th, td {
             padding: 15px;
+            border: 1px solid #003366; /* Darker border for table */
             text-align: left;
-            border-bottom: 1px solid #444;
         }
         th {
-            color: #ffcc00; /* Highlight color for table header */
+            color: #ffcc00; /* Highlight color for headers */
+        }
+        tr:nth-child(even) {
+            background-color: #002244; /* Alternate row color */
         }
         tr:hover {
-            background-color: #003366; /* Darker row on hover */
+            background-color: #005577; /* Hover effect for rows */
         }
-        .action-button {
-            background-color: #d9534f; /* Red for removal */
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .action-button:hover {
-            background-color: #c9302c; /* Darker red on hover */
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-<h1>Moderate Content</h1>
-<p>Review and manage user-generated content.</p>
+<h1>Moderate Services</h1>
+<p>Review flagged profiles for inappropriate content.</p>
+
 <div class="search-container">
-    <input type="text" placeholder="Search Content..." onkeyup="searchContent()">
+    <input type="text" id="searchProfile" placeholder="Search Profiles..." onkeyup="searchProfiles()">
 </div>
-<table id="contentTable">
+
+<table id="profileTable">
     <thead>
     <tr>
-        <th>Content ID</th>
+        <th>Profile ID</th>
         <th>User</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td>123</td>
+        <td>001</td>
         <td>User1</td>
-        <td><button class="action-button">Remove</button></td>
+        <td><button onclick="removeProfile('001')">Remove</button></td>
     </tr>
     <tr>
-        <td>124</td>
+        <td>002</td>
         <td>User2</td>
-        <td><button class="action-button">Remove</button></td>
+        <td><button onclick="removeProfile('002')">Remove</button></td>
     </tr>
     <tr>
-        <td>125</td>
+        <td>003</td>
         <td>User3</td>
-        <td><button class="action-button">Remove</button></td>
+        <td><button onclick="removeProfile('003')">Remove</button></td>
     </tr>
     <tr>
-        <td>126</td>
+        <td>004</td>
         <td>User4</td>
-        <td><button class="action-button">Remove</button></td>
+        <td><button onclick="removeProfile('004')">Remove</button></td>
     </tr>
     <tr>
-        <td>127</td>
+        <td>005</td>
         <td>User5</td>
-        <td><button class="action-button">Remove</button></td>
+        <td><button onclick="removeProfile('005')">Remove</button></td>
     </tr>
     <tr>
-        <td>128</td>
+        <td>006</td>
         <td>User6</td>
-        <td><button class="action-button">Remove</button></td>
+        <td><button onclick="removeProfile('006')">Remove</button></td>
     </tr>
     <tr>
-        <td>129</td>
+        <td>007</td>
         <td>User7</td>
-        <td><button class="action-button">Remove</button></td>
+        <td><button onclick="removeProfile('007')">Remove</button></td>
+    </tr>
+    <tr>
+        <td>008</td>
+        <td>User8</td>
+        <td><button onclick="removeProfile('008')">Remove</button></td>
+    </tr>
+    <tr>
+        <td>009</td>
+        <td>User9</td>
+        <td><button onclick="removeProfile('009')">Remove</button></td>
+    </tr>
+    <tr>
+        <td>010</td>
+        <td>User10</td>
+        <td><button onclick="removeProfile('010')">Remove</button></td>
     </tr>
     </tbody>
 </table>
+
+<div class="error-message" id="errorProfileMessage"></div>
+
 <button onclick="window.history.back();">Back to Admin Board</button>
 
 <script>
-    function searchContent() {
-        const input = document.querySelector('input[type="text"]');
+    function searchProfiles() {
+        const input = document.getElementById('searchProfile');
         const filter = input.value.toLowerCase();
-        const table = document.getElementById("contentTable");
+        const table = document.getElementById("profileTable");
         const trs = table.getElementsByTagName("tr");
         for (let i = 1; i < trs.length; i++) {
             const tds = trs[i].getElementsByTagName("td");
             let found = false;
-            for (let j = 0; j < tds.length - 1; j++) {
+            for (let j = 0; j < tds.length; j++) {
                 if (tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
                     found = true;
                     break;
                 }
             }
             trs[i].style.display = found ? "" : "none";
+        }
+    }
+
+    function removeProfile(profileId) {
+        const profileRow = [...document.getElementById("profileTable").rows].find(row => row.cells[0].textContent === profileId);
+        if (profileRow) {
+            profileRow.remove();
+            document.getElementById("errorProfileMessage").textContent = 'Profile successfully removed.';
+        } else {
+            document.getElementById("errorProfileMessage").textContent = 'Error: No action can be taken.';
         }
     }
 </script>
