@@ -21,18 +21,18 @@ public class PartyPulse {
 
     private String profile_info;
 
-    public user(int user_id, String userName, String password, String profile_info){
+    public PartyPulse(int user_id, String userName, String password, String profile_info){
         this.user_id = user_id;
         this.userName = userName;
         this.password = password;
         this.profile_info = profile_info;
     }
-    public user(String userName, String password, String profile_info){
+    public PartyPulse(String userName, String password, String profile_info){
         this.userName = userName;
         this.password = password;
         this.profile_info = profile_info;
     }
-    public user(){}
+    public PartyPulse(){}
 
     public int getUser_id(){
         return user_id;

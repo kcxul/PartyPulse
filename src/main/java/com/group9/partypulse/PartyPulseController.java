@@ -41,7 +41,7 @@ public class PartyPulseController {
     @PutMapping("/edit/{user_id}")
     public String editUser(@PathVariable int user_id, @RequestBody PartyPulse user){
         service.updateUserByID(user_id, user);
-        return service.findUserByID();
+        return service.findUserByID(user_id);
     }
 
     @PostMapping("/new/user")
