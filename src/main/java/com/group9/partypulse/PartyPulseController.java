@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
-@Controller
+@RestController
 @RequestMapping("/PartyPulse")
 public class PartyPulseController {
 
     @Autowired
-    private PartyService service;
+    private PartyPulse service;
 
     @GetMapping("/")
     public String home() {
@@ -28,17 +28,41 @@ public class PartyPulseController {
         return "redirect:/signup.html";
     }
 
-    @GetMapping("/{user_id}")
-    public String editUser(@PathVariable int user_id, Model model){
-        model.addAttribute("user", service.findUserByID(user_id));
-        return "editprofile";
+    //user stuff here
+
+    @GetMapping("/all/users")
+    public List<user> getAllUsers() {return service.getAllUsers;}
+
+    @GetMapping("/user/{user_id}")
+    public user findUserByID(@PathVariable int user_id){
+        return service.findUserByID();
     }
 
-    @GetMapping("/{party_id}")
-    public String PartySpace(){
-        model.addAttribute("partyPulse", service.findPartyPulseByID(party_id));
-        model.addAttribute("title", party_id);
-        return "redirect:/partyspace.html";}
+    @PutMapping("/edit/{user_id}")
+    public String editUser(@PathVariable int user_id, @RequestBody PartyPulse user){
+        service.updateUserByID(user_id, user);
+        return service.findUserByID();
+    }
+
+    @PostMapping("/new/user")
+    public List<user> addNewUser(@RequestBody PartyPulse user){
+        service.addNewUser(user);
+        return service.getAllUsers();
+    }
+
+    @DeleteMapping("/delete/{user_id}")
+    public List<user> deleteUserByID(@PathVariable int user_id);
+    service.deleteUserByID(user_id);
+    return service.getAllUsers();
+
+    //provider stuff here
+   // @GetMapping("/{party_id}")
+   // public String PartySpace(){
+      //  model.addAttribute("partyPulse", service.findPartyPulseByID(party_id));
+      //  model.addAttribute("title", party_id);
+     //   return "redirect:/partyspace.html";}
 
 
+
+    //admin here
 }
