@@ -28,10 +28,16 @@ public class PartyPulseController {
         return "redirect:/signup.html";
     }
 
-    @GetMapping("/{servid}")
+    @GetMapping("/{user_id}")
+    public String editUser(@PathVariable int user_id, Model model){
+        model.addAttribute("user", service.findUserByID(user_id));
+        return "editprofile";
+    }
+
+    @GetMapping("/{party_id}")
     public String PartySpace(){
-        model.addAttribute("partyPulse", service.findPartyPulseByID(servid));
-        model.addAttribute("title", servid);
+        model.addAttribute("partyPulse", service.findPartyPulseByID(party_id));
+        model.addAttribute("title", party_id);
         return "redirect:/partyspace.html";}
 
 
