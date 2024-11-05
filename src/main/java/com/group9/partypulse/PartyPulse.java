@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @Table(name = "PartyPulse")
 public class PartyPulse {
 
-    //user stuff here first
+    //user stuff here
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;

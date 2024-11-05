@@ -31,10 +31,10 @@ public class PartyPulseController {
     //user stuff here
 
     @GetMapping("/all/users")
-    public List<user> getAllUsers() {return service.getAllUsers;}
+    public List<PartyPulse> getAllUsers() {return service.getAllUsers;}
 
     @GetMapping("/user/{user_id}")
-    public user findUserByID(@PathVariable int user_id){
+    public PartyPulse findUserByID(@PathVariable int user_id){
         return service.findUserByID();
     }
 
@@ -45,13 +45,13 @@ public class PartyPulseController {
     }
 
     @PostMapping("/new/user")
-    public List<user> addNewUser(@RequestBody PartyPulse user){
+    public List<PartyPulse> addNewUser(@RequestBody PartyPulse user){
         service.addNewUser(user);
         return service.getAllUsers();
     }
 
     @DeleteMapping("/delete/{user_id}")
-    public List<user> deleteUserByID(@PathVariable int user_id);
+    public List<PartyPulse> deleteUserByID(@PathVariable int user_id);
     service.deleteUserByID(user_id);
     return service.getAllUsers();
 

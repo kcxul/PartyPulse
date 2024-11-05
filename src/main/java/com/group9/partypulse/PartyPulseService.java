@@ -10,18 +10,18 @@ import java.util.Optional;
 public class PartyPulseService {
 
     @Autowired
-    private PartyPulseRepository PartyPulseRepository;
+    private PartyPulseRepo PartyPulseRepository;
 
-    public List<user> getAllUsers() {
-        return PartyPulseRepository.findAll();
+    public List<PartyPulse> getAllUsers() {
+        return PartyPulseRepo.findAll();
     }
 
-    public user finduserByID(int user_id) {
-        Optional<user> user = PartyPulseRepository.findUserByID(user_id);
+    public PartyPulse findUserByID(int user_id) {
+        Optional<PartyPulse> user = PartyPulseRepository.findUserByID(user_id);
         return user.orElse(null);
     }
 
     public void addNewUser(PartyPulse user) {
-        PartyPulseRepository.save(user);
+        PartyPulseRepo.save(user);
     }
 }

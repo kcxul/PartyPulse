@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PartyPulseRepository extends JpaRepository<user, Integer>{
+public interface PartyPulseRepo extends JpaRepository<PartyPulse, Integer>{
 
     void deleteAnimalById(int id);
 
     @Query(value = "SELECT * FROM user WHERE id = :id",nativeQuery = true)
-    Optional<user> findUserByID(int user_id);
+    Optional<PartyPulse> findUserByID(int user_id);
 }
