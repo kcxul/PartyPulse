@@ -13,7 +13,7 @@ public class PartyPulseService {
     private PartyPulseRepo PartyPulseRepository;
 
     public List<PartyPulse> getAllUsers() {
-        return PartyPulseRepo.findAll();
+        return PartyPulseRepository.findAll();
     }
 
     public PartyPulse findUserByID(int user_id) {
@@ -22,6 +22,17 @@ public class PartyPulseService {
     }
 
     public void addNewUser(PartyPulse user) {
-        PartyPulseRepo.save(user);
+        PartyPulseRepository.save(user);
+    }
+    public void editUser(int user_id, PartyPulse user) {
+        PartyPulse existing = findUserByID(user_id);
+        if (existing != null) {
+            existing.setUserName(PartyPulse.getUserName());
+            existing.setProfile_info(PartyPulse.getProfile_info());
+            PartyPulseRepository.save(user);
+        }
+    }
+    public void deleteUserByID(int user_id) {
+        PartyPulseRepository.deleteAnimalById(user_id);
     }
 }

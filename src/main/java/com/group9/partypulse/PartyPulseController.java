@@ -11,7 +11,7 @@ import java.util.List;
 public class PartyPulseController {
 
     @Autowired
-    private PartyPulse service;
+    private PartyPulseService service;
 
     @GetMapping("/")
     public String home() {
@@ -31,16 +31,16 @@ public class PartyPulseController {
     //user stuff here
 
     @GetMapping("/all/users")
-    public List<PartyPulse> getAllUsers() {return service.getAllUsers;}
+    public List<PartyPulse> getAllUsers() {return service.getAllUsers();}
 
     @GetMapping("/user/{user_id}")
     public PartyPulse findUserByID(@PathVariable int user_id){
-        return service.findUserByID();
+        return service.findUserByID(user_id);
     }
 
     @PutMapping("/edit/{user_id}")
-    public String editUser(@PathVariable int user_id, @RequestBody PartyPulse user){
-        service.updateUserByID(user_id, user);
+    public PartyPulse editUser(@PathVariable int user_id, @RequestBody PartyPulse user){
+        service.editUser(user_id, user);
         return service.findUserByID(user_id);
     }
 
@@ -51,9 +51,10 @@ public class PartyPulseController {
     }
 
     @DeleteMapping("/delete/{user_id}")
-    public List<PartyPulse> deleteUserByID(@PathVariable int user_id);
-    service.deleteUserByID(user_id);
-    return service.getAllUsers();
+    public List<PartyPulse> deleteUserByID(@PathVariable int user_id){
+        service.deleteUserByID(user_id);
+        return service.getAllUsers();
+    }
 
     //provider stuff here
    // @GetMapping("/{party_id}")
