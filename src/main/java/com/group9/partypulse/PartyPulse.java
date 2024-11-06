@@ -50,7 +50,7 @@ public class PartyPulse {
 
     public String getProfile_info(){return profile_info;}
 
-    public void setProfile_info() {this.profile_info = profile_info;}
+    public void setProfile_info(String profile_info) {this.profile_info = profile_info;}
     //provider stuff here
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

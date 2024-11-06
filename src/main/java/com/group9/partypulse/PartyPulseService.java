@@ -27,9 +27,9 @@ public class PartyPulseService {
     public void editUser(int user_id, PartyPulse user) {
         PartyPulse existing = findUserByID(user_id);
         if (existing != null) {
-            existing.setUserName(PartyPulse.getUserName());
-            existing.setProfile_info(PartyPulse.getProfile_info());
-            PartyPulseRepository.save(user);
+            existing.setUserName(user.getUserName());
+            existing.setProfile_info(user.getProfile_info());
+            PartyPulseRepository.save(existing);
         }
     }
     public void deleteUserByID(int user_id) {
