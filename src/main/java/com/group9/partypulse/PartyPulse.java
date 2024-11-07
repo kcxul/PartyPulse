@@ -26,6 +26,7 @@ public class PartyPulse {
         this.userName = userName;
         this.password = password;
         this.profile_info = profile_info;
+        this.party_id = party_id;
     }
     public PartyPulse(String userName, String password, String profile_info){
         this.userName = userName;
@@ -55,6 +56,10 @@ public class PartyPulse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int party_id;
+
+    public int getParty_id(){return party_id;}
+
+    public void setParty_id(int party_id) {this.party_id = party_id;}
 
 
     //admin stuff here

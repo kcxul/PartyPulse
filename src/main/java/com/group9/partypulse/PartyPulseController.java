@@ -57,11 +57,17 @@ public class PartyPulseController {
     }
 
     //provider stuff here
-   // @GetMapping("/{party_id}")
-   // public String PartySpace(){
-      //  model.addAttribute("partyPulse", service.findPartyPulseByID(party_id));
-      //  model.addAttribute("title", party_id);
-     //   return "redirect:/partyspace.html";}
+   @GetMapping("/{party_id}")
+   public List<PartyPulse> PartySpaceByID(@PathVariable int party_id){
+        service.findPartySpaceByID(party_id);
+        return service.findPartySpaceByID(party_id);
+   }
+
+   @GetMapping("/all/PartySpaces")
+    public List<PartyPulse> getAllPartySpaces() {
+        return service.getAllPartySpaces();
+   }
+
 
 
 

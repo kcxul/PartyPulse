@@ -13,4 +13,7 @@ public interface PartyPulseRepo extends JpaRepository<PartyPulse, Integer>{
 
     @Query(value = "SELECT * FROM user WHERE id = :id",nativeQuery = true)
     Optional<PartyPulse> findUserByID(int user_id);
+
+    @Query(value = "SELECT * FROM user WHERE id = :id",nativeQuery = true)
+    Optional<PartyPulse> findPartyPulseByID(int party_id);
 }

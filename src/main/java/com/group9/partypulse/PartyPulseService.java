@@ -35,4 +35,13 @@ public class PartyPulseService {
     public void deleteUserByID(int user_id) {
         PartyPulseRepository.deleteAnimalById(user_id);
     }
+
+    public List<PartyPulse> findPartySpaceByID(int party_id){
+        Optional<PartyPulse> PartySpace = PartyPulseRepository.findPartyPulseByID(party_id);
+        return PartySpace.orElse(null);
+    }
+
+    public List<PartyPulse> getAllPartySpaces() {
+        return PartyPulseRepository.findAll();
+    }
 }
