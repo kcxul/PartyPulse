@@ -57,16 +57,15 @@ public class PartyPulseController {
     }
 
     //provider stuff here
-   @GetMapping("/{party_id}")
-   public List<PartyPulse> PartySpaceByID(@PathVariable int party_id){
-        service.findPartySpaceByID(party_id);
-        return service.findPartySpaceByID(party_id);
-   }
+    @GetMapping("/partyspace/{partyspace_id}")
+    public PartyPulse findPartySpaceByID(@PathVariable int partyspace_id) {
+        return service.findPartySpaceByID(partyspace_id);
+    }
 
-   @GetMapping("/all/PartySpaces")
-    public List<PartyPulse> getAllPartySpaces() {
-        return service.getAllPartySpaces();
-   }
+    @PostMapping("/new/partyspace")
+    public void addNewPartySpace(@RequestBody PartyPulse partySpace) {
+        service.addNewPartySpace(partySpace);
+    }
 
 
 
