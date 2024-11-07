@@ -71,6 +71,14 @@ public class PartyPulse {
     @Column(nullable = false)
     private String partyspace_privacy;
 
+	public PartyPulse(String party_name, String party_description, String partyspace_icon, String partyspace_banner, String partyspace_privacy) {
+        this.party_name = party_name;
+        this.party_description = party_description;
+        this.partyspace_icon = partyspace_icon;
+        this.partyspace_banner = partyspace_banner;
+        this.partyspace_privacy = partyspace_privacy;
+    }
+
     public int getParty_id() {
         return partyspace_id;
     }
