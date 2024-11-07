@@ -1,94 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Usage Statistics - PartyPulse</title>
+
+    <!-- Include Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
-        body {
+        /* Reset some styles */
+        * {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #001f3f; /* Dark blue background */
-            color: #fff;
-            padding: 20px;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease-in-out;
         }
-        h1 {
-            color: #ffcc00; /* Highlight color for headings */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--highlight-color); /* Consistent gold for headings */
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #b0b0b0;
             margin-bottom: 20px;
         }
-        p {
-            font-size: 1.2rem;
-            margin: 10px 0;
+
+        /* Container Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        button {
-            background-color: #ffcc00; /* Button color */
-            color: #001f3f;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin: 10px;
+
+        /* Key Stats Section */
+        .statistics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            margin-bottom: 40px;
         }
-        button:hover {
-            background-color: #ffd700; /* Button hover color */
-        }
-        .error-message {
-            color: #ff4444;
-            margin-top: 10px;
-        }
-        .stats-container {
-            margin: 20px 0;
-            padding: 20px;
-            background-color: #003366; /* Dark blue for the stats area */
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
+
         .stat {
-            margin: 15px 0;
-            font-size: 1.1rem;
+            background: #003366;
+            color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
         }
-        .chart {
-            width: 100%;
-            height: 300px;
-            background-color: #002244; /* Placeholder for chart */
-            border-radius: 5px;
-            margin: 10px 0;
+
+        .stat:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+            border-color: var(--highlight-color);
         }
+
+        .stat h3 {
+            margin-bottom: 12px;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* Chart Section */
+        .chart-container {
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 500px !important;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: var(--button-bg);
+            color: var(--primary-bg);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer Section */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #b0b0b0;
+            font-size: 1rem;
+        }
+
+        /* CSS Variables for consistent design */
+        :root {
+            --primary-bg: #001f3f;
+            --secondary-bg: #003366;
+            --highlight-color: #ffcc00;
+            --button-bg: #ffcc00;
+            --button-hover-bg: #ffd700;
+            --error-color: #ff4444;
+            --text-color: #ffffff;
+            --border-color: #003366;
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            --table-header-bg: #003366;
+            --table-row-bg-alt: #002244;
+        }
+
     </style>
 </head>
+
 <body>
-<h1>View Usage Statistics</h1>
-<p>Analyze application usage data.</p>
 
-<div class="stats-container">
+<!-- Main Container -->
+<div class="container">
+
+    <!-- Page Heading -->
+    <h1>View Usage Statistics</h1>
+    <p>Gain valuable insights into the application usage, sessions, and performance metrics.</p>
+
+    <!-- Key Stats -->
     <h2>Key Statistics</h2>
-    <div class="stat">Total Users: <strong>1,500</strong></div>
-    <div class="stat">Active Sessions Today: <strong>300</strong></div>
-    <div class="stat">Total Subscriptions: <strong>650</strong></div>
-    <div class="stat">Average Session Duration: <strong>15 mins</strong></div>
-    <div class="chart" id="chartPlaceholder">[Chart Placeholder]</div>
+    <div class="statistics">
+        <div class="stat">
+            <h3>Total Users</h3>
+            <p>1,500</p>
+        </div>
+        <div class="stat">
+            <h3>Active Sessions Today</h3>
+            <p>300</p>
+        </div>
+        <div class="stat">
+            <h3>Total Subscriptions</h3>
+            <p>650</p>
+        </div>
+        <div class="stat">
+            <h3>Avg. Session Duration</h3>
+            <p>15 mins</p>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <h2>Usage Overview</h2>
+    <div class="chart-container">
+        <canvas id="usageChart"></canvas>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-btn">
+        <button onclick="window.history.back();">Back to Admin Board</button>
+    </div>
+
 </div>
 
-<div>
-    <button onclick="exportData()">Export Data</button>
-</div>
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2024 PartyPulse. All rights reserved.</p>
+</footer>
 
-<div class="error-message" id="exportMessage"></div>
-
-<button onclick="window.history.back();">Back to Admin Board</button>
-
+<!-- Chart.js Script -->
 <script>
-    function exportData() {
-        // Simulating export success/failure
-        const success = Math.random() > 0.3; // 70% chance of success
-        if (success) {
-            document.getElementById("exportMessage").textContent = 'Data exported successfully.';
-        } else {
-            document.getElementById("exportMessage").textContent = 'Error: Export failed. Please try again.';
+    // Chart.js Configuration
+    var ctx = document.getElementById('usageChart').getContext('2d');
+
+    var usageChart = new Chart(ctx, {
+        type: 'bar', // Bar chart
+        data: {
+            labels: ['Total Users', 'Active Sessions Today', 'Total Subscriptions', 'Avg. Session Duration'], // X-axis labels
+            datasets: [{
+                label: 'Usage Statistics',
+                data: [1500, 300, 650, 15], // Corresponding data points
+                backgroundColor: [
+                    'rgba(255, 204, 0, 0.6)',  // Gold for Total Users
+                    'rgba(0, 51, 102, 0.6)',   // Dark Blue for Active Sessions
+                    'rgba(102, 179, 255, 0.6)', // Light Blue for Subscriptions
+                    'rgba(255, 87, 51, 0.6)'    // Red for Session Duration
+                ],
+                borderColor: '#fff',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 2000,  // Y-axis max value (customizable)
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false, // Hides the legend
+                },
+                tooltip: {
+                    backgroundColor: '#333', // Custom tooltip background color
+                    bodyColor: '#fff', // Tooltip text color
+                    cornerRadius: 5, // Rounded corners on tooltips
+                }
+            },
         }
-    }
+    });
 </script>
+
 </body>
+
 </html>

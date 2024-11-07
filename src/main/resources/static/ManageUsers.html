@@ -1,189 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage User Access - PartyPulse</title>
+    <title>Moderate Reviews - PartyPulse</title>
     <style>
+        /* Define reusable CSS variables */
+        :root {
+            --primary-bg: #001f3f;
+            --secondary-bg: #003366;
+            --highlight-color: #ffcc00;
+            --button-bg: #ffcc00;
+            --button-hover-bg: #ffd700;
+            --error-color: #ff4444;
+            --text-color: #ffffff;
+            --border-color: #003366;
+            --row-hover-color: #005577;
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            --table-header-bg: #003366;
+            --table-row-bg-alt: #002244;
+        }
+
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #001f3f; /* Dark blue background */
-            color: #fff;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
             padding: 20px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
+
         h1 {
-            color: #ffcc00; /* Highlight color for headings */
+            color: var(--highlight-color);
             margin-bottom: 20px;
+            font-size: 2rem;
         }
+
         p {
             font-size: 1.2rem;
             margin: 10px 0;
+            color: var(--text-color);
         }
+
+        /* Search Input */
         .search-container {
             margin-bottom: 20px;
         }
+
         input[type="text"] {
             padding: 10px;
             width: 250px;
-            border: none;
+            border: 2px solid var(--secondary-bg);
             border-radius: 5px;
             outline: none;
+            transition: border-color 0.3s ease;
         }
-        button {
-            background-color: #ffcc00; /* Button color */
-            color: #001f3f;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+
+        input[type="text"]:focus {
+            border-color: var(--highlight-color);
         }
-        button:hover {
-            background-color: #ffd700; /* Button hover color */
-        }
+
+        /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--box-shadow);
         }
+
         thead {
-            background-color: #003366; /* Dark blue for header */
+            background-color: var(--table-header-bg);
         }
-        th, td {
+
+        th,
+        td {
             padding: 15px;
-            border: 1px solid #003366; /* Darker border for table */
+            border: 1px solid var(--border-color);
             text-align: left;
         }
+
         th {
-            color: #ffcc00; /* Highlight color for headers */
+            color: var(--highlight-color);
+            font-size: 1.1rem;
         }
+
         tr:nth-child(even) {
-            background-color: #002244; /* Alternate row color */
+            background-color: var(--table-row-bg-alt);
         }
+
         tr:hover {
-            background-color: #005577; /* Hover effect for rows */
+            background-color: var(--row-hover-color);
         }
-        .status-banned {
-            color: #d9534f; /* Red for banned status */
+
+        .status-pending {
+            color: #f0ad4e;
+            font-weight: bold;
         }
+
+        /* Buttons */
+        button {
+            background-color: var(--button-bg);
+            color: var(--primary-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        button:focus {
+            outline: 2px solid var(--highlight-color);
+        }
+
+        /* Error Message */
         .error-message {
-            color: #ff4444;
+            color: var(--error-color);
             margin-top: 10px;
+        }
+
+        /* Back Button */
+        .back-button {
+            background-color: transparent;
+            color: var(--highlight-color);
+            border: 2px solid var(--highlight-color);
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: var(--highlight-color);
+            color: var(--primary-bg);
+        }
+
+        /* Pagination Controls */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: transparent;
+            color: var(--highlight-color);
+            border: 2px solid var(--highlight-color);
+            padding: 10px 15px;
+            font-size: 1rem;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: var(--highlight-color);
+            color: var(--primary-bg);
+        }
+
+        /* Make the layout responsive */
+        @media (max-width: 768px) {
+            .search-container {
+                width: 100%;
+                text-align: center;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
-<body>
-<h1>Manage User Access</h1>
-<p>Review flagged accounts and manage user access.</p>
 
+<body>
+
+<h1>Moderate Reviews</h1>
+<p>Review user feedback and manage pending approvals.</p>
+
+<!-- Search Bar -->
 <div class="search-container">
-    <input type="text" id="searchUser" placeholder="Search Users..." onkeyup="searchUsers()">
+    <input type="text" id="searchReview" placeholder="Search Reviews..." onkeyup="filterReviews()">
 </div>
 
-<table id="userTable">
+<!-- Review Table -->
+<table id="reviewTable">
     <thead>
     <tr>
-        <th>Username</th>
-        <th>Email</th>
+        <th>Review ID</th>
+        <th>User</th>
+        <th>Review Content</th>
+        <th>Submitted On</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-        <td>User1</td>
-        <td>user1@example.com</td>
-        <td>Flagged</td>
-        <td><button onclick="banUser('User1', this)">Ban</button></td>
-    </tr>
-    <tr>
-        <td>User2</td>
-        <td>user2@example.com</td>
-        <td>Active</td>
-        <td><button onclick="banUser('User2', this)">Ban</button></td>
-    </tr>
-    <tr>
-        <td>User3</td>
-        <td>user3@example.com</td>
-        <td>Flagged</td>
-        <td><button onclick="banUser('User3', this)">Ban</button></td>
-    </tr>
-    <tr>
-        <td>User4</td>
-        <td>user4@example.com</td>
-        <td>Active</td>
-        <td><button onclick="banUser('User4', this)">Ban</button></td>
-    </tr>
-    <tr>
-        <td>User5</td>
-        <td>user5@example.com</td>
-        <td>Flagged</td>
-        <td><button onclick="banUser('User5', this)">Ban</button></td>
-    </tr>
-    <tr>
-        <td>User6</td>
-        <td>user6@example.com</td>
-        <td>Active</td>
-        <td><button onclick="banUser('User6', this)">Ban</button></td>
-    </tr>
-    <tr>
-        <td>User7</td>
-        <td>user7@example.com</td>
-        <td>Flagged</td>
-        <td><button onclick="banUser('User7', this)">Ban</button></td>
-    </tr>
-    <tr>
-        <td>User8</td>
-        <td>user8@example.com</td>
-        <td>Active</td>
-        <td><button onclick="banUser('User8', this)">Ban</button></td>
-    </tr>
+    <tbody id="reviewTableBody">
+    <!-- Reviews will be populated by JavaScript -->
     </tbody>
 </table>
 
-<div class="error-message" id="errorMessage"></div>
+<!-- Pagination Controls -->
+<div class="pagination">
+    <button id="prevBtn" onclick="changePage(-1)" disabled>Previous</button>
+    <button id="page1" onclick="goToPage(1)">1</button>
+    <button id="page2" onclick="goToPage(2)">2</button>
+    <button id="page3" onclick="goToPage(3)">3</button>
+    <button id="nextBtn" onclick="changePage(1)">Next</button>
+</div>
 
-<button onclick="window.history.back();">Back to Admin Board</button>
+<!-- Error Message -->
+<div class="error-message" id="errorReviewMessage"></div>
+
+<!-- Back Button -->
+<button class="back-button" onclick="window.history.back();">Back to Admin Dashboard</button>
 
 <script>
-    function searchUsers() {
-        const input = document.getElementById('searchUser');
-        const filter = input.value.toLowerCase();
-        const table = document.getElementById("userTable");
-        const trs = table.getElementsByTagName("tr");
-        for (let i = 1; i < trs.length; i++) {
-            const tds = trs[i].getElementsByTagName("td");
-            let found = false;
-            for (let j = 0; j < tds.length - 1; j++) {
-                if (tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
-                    found = true;
-                    break;
-                }
-            }
-            trs[i].style.display = found ? "" : "none";
+    // Sample review data
+    const reviews = [
+        { id: 'R001', user: 'GamerX', content: 'Amazing graphics and immersive gameplay, but the servers need some work!', timestamp: '2024-11-05 12:30', status: 'Pending' },
+        { id: 'R002', user: 'SpeedyPlayer', content: 'Best battle royale experience so far! I can’t stop playing it!', timestamp: '2024-11-05 14:20', status: 'Approved' },
+        { id: 'R003', user: 'NoobMaster', content: 'Buggy updates ruined the experience. The game crashes every time I try to join a match!', timestamp: '2024-11-06 09:15', status: 'Pending' },
+        { id: 'R004', user: 'ProGamer42', content: 'Great team mechanics and diverse characters, but matchmaking is way too slow.', timestamp: '2024-11-06 11:00', status: 'Approved' },
+        { id: 'R005', user: 'EpicGamer77', content: 'Incredible story mode, but the online multiplayer feels stale. Could use new maps!', timestamp: '2024-11-06 12:40', status: 'Pending' },
+        { id: 'R006', user: 'GameKing98', content: 'This game has a huge potential, but the lack of updates is disappointing. Hope they add more content soon!', timestamp: '2024-11-07 10:10', status: 'Approved' },
+        { id: 'R007', user: 'PvPChampion', content: 'I love the PvP modes! But the weapon balance is off. Some guns are too OP.', timestamp: '2024-11-07 15:05', status: 'Pending' },
+        { id: 'R008', user: 'QuestMasterX', content: 'The quest system is fantastic, but I’d like to see better rewards for completing side missions.', timestamp: '2024-11-08 09:25', status: 'Approved' },
+        { id: 'R009', user: 'GamerGirl', content: 'Awesome character design and lore! But the combat feels a little too repetitive after a while.', timestamp: '2024-11-08 12:45', status: 'Pending' },
+        { id: 'R010', user: 'ChillGamer', content: 'The game’s open world is gorgeous, but the AI is too predictable. Needs improvement!', timestamp: '2024-11-08 14:00', status: 'Approved' }
+    ];
+
+    let currentPage = 1;
+    const reviewsPerPage = 5;
+    const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+
+    // Function to display reviews in the table
+    function displayReviews() {
+        const tableBody = document.getElementById("reviewTableBody");
+        tableBody.innerHTML = ''; // Clear current table rows
+
+        const startIndex = (currentPage - 1) * reviewsPerPage;
+        const endIndex = Math.min(startIndex + reviewsPerPage, reviews.length);
+        const reviewsToDisplay = reviews.slice(startIndex, endIndex);
+
+        reviewsToDisplay.forEach(review => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${review.id}</td>
+                <td>${review.user}</td>
+                <td>${review.content}</td>
+                <td>${review.timestamp}</td>
+                <td><span class="status-${review.status.toLowerCase()}">${review.status}</span></td>
+                <td><button onclick="approveReview('${review.id}', this)">Approve</button><button onclick="rejectReview('${review.id}', this)">Reject</button></td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        updatePagination();
+    }
+
+    // Update pagination buttons
+    function updatePagination() {
+        document.getElementById("prevBtn").disabled = currentPage === 1;
+        document.getElementById("nextBtn").disabled = currentPage === totalPages;
+
+        for (let i = 1; i <= totalPages; i++) {
+            document.getElementById(`page${i}`).disabled = (i === currentPage);
         }
     }
 
-    function banUser(username, button) {
-        const userRow = button.closest('tr');
-        if (userRow.cells[2].textContent.includes('Banned')) {
-            unbanUser(userRow);
-        } else {
-            userRow.cells[2].innerHTML = '<span class="status-banned">Banned</span>';
-            userRow.cells[3].innerHTML = `<button onclick="unbanUser(this)">Unban</button>`;
-            document.getElementById("errorMessage").textContent = '';
-        }
+    // Change page (previous or next)
+    function changePage(offset) {
+        currentPage += offset;
+        displayReviews();
     }
 
-    function unbanUser(button) {
-        const userRow = button.closest('tr');
-        userRow.cells[2].innerHTML = 'Active'; // Change status back to Active
-        userRow.cells[3].innerHTML = `<button onclick="banUser('${userRow.cells[0].textContent}', this)">Ban</button>`; // Add ban button back
-        document.getElementById("errorMessage").textContent = '';
+    // Go to a specific page
+    function goToPage(page) {
+        currentPage = page;
+        displayReviews();
     }
+
+    // Approve review function
+    function approveReview(reviewId, button) {
+        const reviewRow = button.closest('tr');
+        reviewRow.cells[4].innerHTML = '<span class="status-approved">Approved</span>';
+        reviewRow.cells[5].innerHTML = `<button onclick="rejectReview('${reviewId}', this)">Reject</button>`;
+    }
+
+    // Reject review function
+    function rejectReview(reviewId, button) {
+        const reviewRow = button.closest('tr');
+        reviewRow.cells[4].innerHTML = '<span class="status-rejected">Rejected</span>';
+        reviewRow.cells[5].innerHTML = `<button onclick="approveReview('${reviewId}', this)">Approve</button>`;
+    }
+
+    // Initialize the page
+    displayReviews();
+
 </script>
+
 </body>
+
 </html>

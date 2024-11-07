@@ -1,141 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PartyPulse Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* General Styles */
+        :root {
+            --primary-bg: #0a192f;
+            --secondary-bg: #003366;
+            --highlight-color: #ffcc00;
+            --accent-color: #001f3f;
+            --card-bg: #003366;
+            --button-bg: #ffcc00;
+            --button-hover-bg: #ffd700;
+            --text-color: #ffffff;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            --card-hover-transform: translateY(-10px);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --footer-bg: #001f3f;
+        }
+
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #0a192f;
-            color: #fff;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
+
         header {
-            background-color: #003366;
+            background-color: var(--secondary-bg);
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--box-shadow);
         }
+
         header h1 {
-            color: #ffcc00;
+            color: var(--highlight-color);
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
+
+        header button {
+            background-color: var(--button-bg);
+            color: var(--accent-color);
+            border: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        header button:hover {
+            background-color: var(--highlight-color);
+            color: var(--primary-bg);
+            transform: scale(1.1);
+        }
+
         nav {
             display: flex;
             justify-content: center;
-            background-color: #001f3f;
-            padding: 15px 0;
+            background-color: var(--accent-color);
+            padding: 12px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
+
         nav a {
-            color: #ffffff;
+            color: var(--text-color);
             text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            padding: 14px 20px;
+            margin: 0 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
         }
+
         nav a:hover {
-            background-color: #ffcc00;
-            color: #001f3f;
+            background-color: var(--highlight-color);
+            color: var(--accent-color);
+            transform: scale(1.1);
         }
+
         .container {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+            padding: 30px;
             flex: 1;
-            padding: 20px;
-            justify-content: space-between;
-            gap: 20px;
+            box-sizing: border-box;
         }
+
         .sidebar {
-            width: 200px;
-            background-color: #003366;
+            background-color: var(--secondary-bg);
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
         }
+
+        .sidebar:hover {
+            transform: translateX(-10px);
+        }
+
         .sidebar h2 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
-            color: #ffcc00;
+            color: var(--highlight-color);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
         }
+
         .sidebar ul {
             list-style: none;
             padding: 0;
         }
+
         .sidebar ul li {
-            margin: 15px 0;
+            margin: 20px 0;
         }
+
         .sidebar ul li a {
-            color: #ffffff;
+            color: var(--text-color);
             text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
         .sidebar ul li a:hover {
-            background-color: #ffd700;
+            background-color: var(--highlight-color);
+            color: var(--accent-color);
+            transform: scale(1.05);
         }
+
         .main-content {
-            flex: 1;
-            padding: 20px;
-            background-color: #001f3f;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background-color: var(--accent-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
         }
-        .main-content h2 {
-            font-size: 1.5rem;
-            color: #ffcc00;
-            margin-bottom: 20px;
-        }
-        .dashboard-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .card {
-            background-color: #003366;
-            padding: 15px;
-            border-radius: 5px;
-            flex: 1 1 calc(33% - 20px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-        }
-        .card:hover {
+
+        .main-content:hover {
             transform: translateY(-5px);
         }
+
+        .main-content h2 {
+            font-size: 1.8rem;
+            color: var(--highlight-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: var(--card-hover-transform);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+        }
+
         .card h3 {
             margin: 0;
-            color: #ffcc00;
+            color: var(--highlight-color);
+            font-size: 1.5rem;
         }
+
         .card p {
-            color: #ffffff;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-top: 10px;
         }
+
         footer {
-            background-color: #003366;
+            background-color: var(--footer-bg);
             text-align: center;
-            padding: 10px;
-            color: #ffffff;
+            padding: 20px;
+            color: var(--text-color);
             position: relative;
+            bottom: 0;
+            width: 100%;
         }
+
+        footer a {
+            color: var(--highlight-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Accessibility and Responsive Design */
+        button,
+        nav a {
+            border-radius: 6px;
+            outline: none;
+        }
+
+        button:focus,
+        nav a:focus {
+            outline: 2px solid var(--highlight-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .dashboard-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
     </style>
 </head>
+
 <body>
 <header>
     <h1>PartyPulse Admin</h1>
-    <button onclick="alert('Manage your settings here!')" style="background-color: #ffcc00; color: #001f3f; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Settings</button>
+    <button onclick="alert('Manage your settings here!')">Settings</button>
 </header>
+
 <nav>
-    <a href="manageUsers.html">Manage Users</a>
-    <a href="moderateContent.html">Moderate Content</a>
-    <a href="statistics.html">Statistics</a>
-    <a href="ModerateReview.html">Moderate Reviews</a>
+    <a href="manageUsers.html" aria-label="Manage Users">Manage Users</a>
+    <a href="moderateContent.html" aria-label="Moderate Content">Moderate Content</a>
+    <a href="statistics.html" aria-label="View Statistics">Statistics</a>
+    <a href="ModerateReview.html" aria-label="Moderate Reviews">Moderate Reviews</a>
 </nav>
+
 <div class="container">
     <aside class="sidebar">
         <h2>Admin Menu</h2>
@@ -146,9 +264,11 @@
             <li><a href="ModerateReview.html">Moderate Reviews</a></li>
         </ul>
     </aside>
+
     <div class="main-content">
         <h2>Overview</h2>
-        <p>Welcome to the Admin Dashboard! Here you can manage users, moderate content, view statistics, and handle moderate reviews.</p>
+        <p>Welcome to the Admin Dashboard! Here you can manage users, moderate content, view statistics, and handle reviews.</p>
+
         <div class="dashboard-cards">
             <div class="card">
                 <h3>Total Users</h3>
@@ -175,20 +295,22 @@
                 <p>50 pieces reviewed</p>
             </div>
         </div>
-        <!-- Add a logout button -->
-        <div style="margin-top: 20px;">
-            <button onclick="logout()" style="background-color: #ffcc00; color: #001f3f; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Log Out</button>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <button onclick="logout()">Log Out</button>
         </div>
     </div>
 </div>
+
 <footer>
-    &copy; 2024 PartyPulse. All Rights Reserved.
+    <p>&copy; 2024 PartyPulse. All Rights Reserved.</p>
 </footer>
+
 <script>
     function logout() {
         window.location.href = 'AdminLogin.html';
     }
 </script>
-<script src="navbar.js"></script>
 </body>
+
 </html>
