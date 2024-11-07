@@ -67,6 +67,11 @@ public class PartyPulseController {
         service.addNewPartySpace(partySpace);
     }
 
+	@DeleteMapping("/delete/{partyspace_id}")
+    public void deletePartySpaceByID(@PathVariable int partyspace_id) {
+        service.deletePartySpaceByID(partyspace_id);
+    }
+
 
 
 

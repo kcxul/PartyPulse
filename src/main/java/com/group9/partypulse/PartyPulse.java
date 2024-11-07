@@ -1,11 +1,8 @@
 package com.group9.partypulse;
 
-
-import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PartyPulse")
 public class PartyPulse {
 
     //user stuff here
@@ -26,7 +23,6 @@ public class PartyPulse {
         this.userName = userName;
         this.password = password;
         this.profile_info = profile_info;
-        this.partyspace_id = partyspace_id;
     }
     public PartyPulse(String userName, String password, String profile_info){
         this.userName = userName;
@@ -56,7 +52,7 @@ public class PartyPulse {
     //provider stuff here
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int partyspace_id;
+    private int party_id;
 
     @Column(nullable = false)
     private String party_name;
@@ -80,11 +76,11 @@ public class PartyPulse {
     }
 
     public int getParty_id() {
-        return partyspace_id;
+        return party_id;
     }
 
     public void setParty_id(int party_id) {
-        this.partyspace_id = party_id;
+        this.party_id = party_id;
     }
 
     public String getParty_name() {

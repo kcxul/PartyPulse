@@ -48,4 +48,8 @@ public class PartyPulseService {
         return PartyPulseRepository.findPartyPulseByID(partyspace_id).orElse(null);
     }
 
+	    public void deletePartySpaceByID(int partyspace_id) {
+        PartyPulseRepository.deleteById(partyspace_id);
+    }
+
 }
