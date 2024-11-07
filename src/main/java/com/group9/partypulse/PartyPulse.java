@@ -3,6 +3,7 @@ package com.group9.partypulse;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "partypulse")
 public class PartyPulse {
 
     //user stuff here
