@@ -29,7 +29,8 @@ public class UserService {
         User existing = findUserByID(user_id);
         if (existing != null) {
             existing.setUserName(user.getUserName());
-            existing.setProfile_info(user.getProfile_info());
+            existing.setUser_email(user.getUser_email());
+            existing.setProfile_des(user.getProfile_des());
             UserRepository.save(existing);
         }
     }
