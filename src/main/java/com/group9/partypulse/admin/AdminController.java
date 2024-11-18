@@ -13,6 +13,9 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private AdminRepository adminRepository;  // Inject AdminRepository for direct DB access
+
     // Get all admins
     @GetMapping("/all")
     public List<Admin> getAllAdmins() {
@@ -33,8 +36,15 @@ public class AdminController {
 
     // Create a new admin
     @PostMapping("/new")
-    public Admin createAdmin(@RequestBody Admin admin) {
-        return adminService.createAdmin(admin);
+    public String createAdmin(@RequestParam String username, @RequestParam String password, @RequestParam String accountStatus) {
+        Admin newAdmin = new Admin();
+        newAdmin.setUsername(username);
+        newAdmin.setPassword(password);
+        newAdmin.setAccountStatus(accountStatus);
+
+        adminRepository.save(newAdmin);  // Save the new admin to the database
+
+        return "redirect:/admin/all";  // Redirect to the list of all admins or wherever you want after creation
     }
 
     // Update an existing admin
@@ -48,4 +58,5 @@ public class AdminController {
     public void deleteAdmin(@PathVariable Long id) {
         adminService.deleteAdmin(id);
     }
+
 }
