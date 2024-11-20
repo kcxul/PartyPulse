@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+
+<div>
+    <h3>System Overview:</h3>
+    <p><strong>Total Admins:</strong> <span th:text="${totalAdmins}">0</span></p>
+    <p><strong>Active Admins:</strong> <span th:text="${activeAdmins}">0</span></p>
+    <p><strong>Suspended Admins:</strong> <span th:text="${suspendedAdmins}">0</span></p>
+</div>
+
+<div>
+    <h3>Admin Actions:</h3>
+    <ul>
+        <li><a href="/admin/form">Create New Admin</a></li>
+        <li><a href="/admin/all">Manage Admins</a></li>
+        <li><a href="/admin/settings">System Settings</a></li>
+    </ul>
+</div>
+
+<a href="/admin/all">Back to Admin List</a>
+
+</body>
+</html>

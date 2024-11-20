@@ -1,12 +1,14 @@
 package com.group9.partypulse.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -14,49 +16,77 @@ public class AdminController {
     private AdminService adminService;
 
     @Autowired
-    private AdminRepository adminRepository;  // Inject AdminRepository for direct DB access
+    private AdminRepository adminRepository;
 
-    // Get all admins
+    // Show all admins
     @GetMapping("/all")
-    public List<Admin> getAllAdmins() {
-        return adminService.getAllAdmins();
+    public String getAllAdmins(Model model) {
+        List<Admin> admins = adminService.getAllAdmins();
+        model.addAttribute("admins", admins);
+        return "adminList";
     }
 
-    // Get an admin by ID
-    @GetMapping("/{id}")
-    public Optional<Admin> getAdminById(@PathVariable Long id) {
-        return adminService.findAdminById(id);
+    // Show admin dashboard
+    @GetMapping("/dashboard")
+    public String showAdminDashboard(Model model) {
+        long totalAdmins = adminService.getAllAdmins().size();
+        long activeAdmins = adminService.getActiveAdmins().size();
+        long suspendedAdmins = adminService.getSuspendedAdmins().size();
+
+        model.addAttribute("totalAdmins", totalAdmins);
+        model.addAttribute("activeAdmins", activeAdmins);
+        model.addAttribute("suspendedAdmins", suspendedAdmins);
+
+        return "adminDashboard";
     }
 
-    // Get an admin by username
-    @GetMapping("/username/{username}")
-    public Admin getAdminByUsername(@PathVariable String username) {
-        return adminService.findAdminByUsername(username);
+    // Show form to create a new admin
+    @GetMapping("/form")
+    public String showCreateAdminForm(Model model) {
+        model.addAttribute("admin", new Admin());  // Create a new admin object
+        return "adminForm";  // Create new admin form
     }
 
-    // Create a new admin
-    @PostMapping("/new")
-    public String createAdmin(@RequestParam String username, @RequestParam String password, @RequestParam String accountStatus) {
-        Admin newAdmin = new Admin();
-        newAdmin.setUsername(username);
-        newAdmin.setPassword(password);
-        newAdmin.setAccountStatus(accountStatus);
-
-        adminRepository.save(newAdmin);  // Save the new admin to the database
-
-        return "redirect:/admin/all";  // Redirect to the list of all admins or wherever you want after creation
+    // Handle form submission for creating a new admin
+    @PostMapping("/form")
+    public String createAdmin(@ModelAttribute Admin admin) {
+        adminRepository.save(admin);  // Save the new admin
+        return "redirect:/admin/all";  // Redirect back to admin list
     }
 
-    // Update an existing admin
-    @PutMapping("/update/{id}")
-    public Admin updateAdmin(@PathVariable Long id, @RequestBody Admin updatedAdmin) {
-        return adminService.updateAdmin(id, updatedAdmin);
+    // Show form to edit an existing admin
+    @GetMapping("/edit/{id}")
+    public String showEditAdminForm(@PathVariable Long id, Model model) {
+        Optional<Admin> admin = adminService.findAdminById(id);
+        if (admin.isPresent()) {
+            model.addAttribute("admin", admin.get());
+            return "adminForm";  // Edit admin form
+        }
+        return "redirect:/admin/all";  // Redirect if not found
     }
 
-    // Delete an admin by ID
-    @DeleteMapping("/delete/{id}")
-    public void deleteAdmin(@PathVariable Long id) {
+    // Handle form submission for updating admin
+    @PostMapping("/update/{id}")
+    public String updateAdmin(@PathVariable Long id, @ModelAttribute Admin updatedAdmin) {
+        adminService.updateAdmin(id, updatedAdmin);
+        return "redirect:/admin/all";
+    }
+
+    // View admin details
+    @GetMapping("/view/{id}")
+    public String viewAdminDetails(@PathVariable Long id, Model model) {
+        Optional<Admin> admin = adminService.findAdminById(id);
+        if (admin.isPresent()) {
+            model.addAttribute("admin", admin.get());
+            return "adminDetail";
+        }
+        return "redirect:/admin/all";
+    }
+
+    // Delete admin
+    @GetMapping("/delete/{id}")
+    public String deleteAdmin(@PathVariable Long id) {
         adminService.deleteAdmin(id);
+        return "redirect:/admin/all";
     }
-
 }

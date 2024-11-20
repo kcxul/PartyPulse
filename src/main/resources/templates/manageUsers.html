@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Optional: Add styles -->
+</head>
+<body>
+<h1>Manage Users</h1>
+
+<!-- Search Users by Username -->
+<form method="GET" action="/PartyPulse/userview/search">
+    <input type="text" name="username" placeholder="Search by username">
+    <button type="submit">Search</button>
+</form>
+
+<!-- User Table -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Profile Info</th>
+        <th>Account Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Dynamic content: loop through the users -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.user_id}"></td>
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.profile_info}"></td>
+        <td th:text="${user.accountStatus}"></td>
+        <td>
+            <!-- Edit User -->
+            <a th:href="@{/PartyPulse/userview/edit/{id}(id=${user.user_id})}">Edit</a>
+
+            <!-- Suspend/Activate User -->
+            <form th:action="@{/PartyPulse/userview/toggle-status/{id}(id=${user.user_id})}" method="POST" style="display:inline;">
+                <button type="submit" th:text="${user.accountStatus == 'Active' ? 'Suspend' : 'Activate'}"></button>
+            </form>
+
+            <!-- Delete User -->
+            <form th:action="@{/PartyPulse/userview/delete/{id}(id=${user.user_id})}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
