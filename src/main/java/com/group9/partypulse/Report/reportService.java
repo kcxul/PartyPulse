@@ -1,6 +1,7 @@
 package com.group9.partypulse.Report;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.Optional;
 
 @Service
 public class reportService {
+
+    @Autowired
     private reportRepo ReportRepository;
 
     public List<Report> getAllReports() {

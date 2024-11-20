@@ -18,19 +18,24 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private String profile_info;
+    private String profile_des;
 
-    public User(int user_id, String userName, String password, String profile_info) {
+    @Column(nullable = false)
+    private String user_email;
+
+    public User(int user_id, String userName, String user_email, String password, String profile_des) {
         this.user_id = user_id;
         this.userName = userName;
+        this.user_email = user_email;
         this.password = password;
-        this.profile_info = profile_info;
+        this.profile_des = profile_des;
     }
 
-    public User(String userName, String password, String profile_info) {
+    public User(String userName, String user_email, String password, String profile_des) {
         this.userName = userName;
+        this.user_email = user_email;
         this.password = password;
-        this.profile_info = profile_info;
+        this.profile_des = profile_des;
     }
 
     public User() {
@@ -52,6 +57,14 @@ public class User {
         this.userName = userName;
     }
 
+    public String getUser_email() {
+        return user_email;
+    }
+
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -60,11 +73,12 @@ public class User {
         this.password = password;
     }
 
-    public String getProfile_info() {
-        return profile_info;
+    public String getProfile_des() {
+        return profile_des;
     }
 
-    public void setProfile_info(String profile_info) {
-        this.profile_info = profile_info;
+    public void setProfile_des(String profile_des) {
+        this.profile_des = profile_des;
     }
+
 }
