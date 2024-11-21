@@ -1,6 +1,9 @@
 package com.group9.partypulse.admin;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Admin {
@@ -13,7 +16,7 @@ public class Admin {
     private String password;
     private String accountStatus;
 
-    // Getters and Setters
+    // Getters and setters
     public Long getId() {
         return id;
     }
