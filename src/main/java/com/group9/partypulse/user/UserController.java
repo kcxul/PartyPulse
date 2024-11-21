@@ -44,7 +44,7 @@ public class UserController {
     }
 
     // API to edit a user by ID (for JSON responses, if needed)
-    @ResponseBody
+
     @GetMapping("/edit/{user_id}")
     public String editUser(@PathVariable int user_id, Model model) {
         model.addAttribute("user", service.findUserByID(user_id));
