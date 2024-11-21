@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/PartyPulse/report")
+@Controller
+@RequestMapping("/report")
 
 public class reportController {
 
@@ -32,10 +32,16 @@ public class reportController {
         service.editReport(report_id, report);
         return service.findReportByID(report_id);
     }
+
+    @GetMapping("/createForm")
+    public String showCreateForm(){
+        return "Report-form";
+    }
+
     @PostMapping("/new/report")
-    public List<Report> addNewReport(@RequestBody Report report) {
+    public String addNewReport(Report report) {
         service.addNewReport(report);
-        return service.getAllReports();
+        return "redirect:/PartyPulse/partyspace";
     }
 
     @DeleteMapping("/delete/{report_id}")

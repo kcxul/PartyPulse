@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/PartyPulse/userview")
+@Controller
+@RequestMapping("/User")
 public class UserController {
 
     @Autowired
@@ -41,16 +41,22 @@ public class UserController {
         return service.findUserByID(user_id);
     }
 
-    @PutMapping("/edit/{user_id}")
-    public User editUser(@PathVariable int user_id, @RequestBody User user) {
-        service.editUser(user_id, user);
-        return service.findUserByID(user_id);
+    @GetMapping("/edit/{user_id}")
+    public String editUser(@PathVariable int user_id, Model model) {
+        model.addAttribute("user", service.findUserByID(user_id));
+        return "editprofile";
+    }
+
+    @PostMapping("/update-profile")
+    public String updateUser(User user){
+        service.addNewUser(user);
+        return "redirect:/PartyPulse/partyspace";
     }
 
     @PostMapping("/new/user")
-    public List<User> addNewUser(@RequestBody User user) {
+    public String addNewUser(User user) {
         service.addNewUser(user);
-        return service.getAllUsers();
+        return "redirect:/partyspacelist";
     }
 
     @DeleteMapping("/delete/{user_id}")

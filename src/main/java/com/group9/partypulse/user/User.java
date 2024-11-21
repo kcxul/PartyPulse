@@ -12,29 +12,34 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
 
-    @Column(nullable = false)
+    @Column
     private String userName;
 
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String confirmPassword;
+
     private String profile_des;
 
-    @Column(nullable = false)
+    @Column
     private String user_email;
 
-    public User(int user_id, String userName, String user_email, String password, String profile_des) {
+    public User(int user_id, String userName, String user_email, String password, String confirmPassword, String profile_des) {
         this.user_id = user_id;
         this.userName = userName;
         this.user_email = user_email;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.profile_des = profile_des;
     }
 
-    public User(String userName, String user_email, String password, String profile_des) {
+    public User(String userName, String user_email, String password, String confirmPassword, String profile_des) {
         this.userName = userName;
         this.user_email = user_email;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.profile_des = profile_des;
     }
 
@@ -71,6 +76,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getProfile_des() {

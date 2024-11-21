@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Report Form</title>
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            padding: 30px;
+            border: 2px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Report Form</h1>
+    <form action="/report/new/report" method="post">
+        <label for="reportTitle">Put the title of your report here:</label><br>
+        <input type="text" id="reportTitle" name="reportTitle" value="Title"><br>
+        <label for="reportInfo">The description of the report goes here:</label><br>
+        <input type="text" id="reportInfo" name="reportInfo" value="Description"><br>
+        <input type="submit" value="Submit"><br>
+    </form>
+</div>
+</body>
+</html>
