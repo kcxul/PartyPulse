@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../static/style.css" />
   </head>
   <body class="login-body">
     <div class="top-container">
@@ -17,19 +17,19 @@
         <h1>Sign Up</h1>
       </div>
       <div class="login-container">
-        <form id="signup-form" onsubmit="return handleSignup(event);">
-          <input type="text" id="username" placeholder="Username" required />
-          <input type="email" id="email" placeholder="Email" required />
-          <input type="password" id="password" placeholder="Password" required />
-          <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+        <form action="User/new/user" id="signup-form" onsubmit="return handleSignup(event);">
+          <input type="text" id="userName" placeholder="Username" data-th-value="${user.userName}" />
+          <input type="email" id="user_email" placeholder="Email"  data-th-value="${user.user_email}"/>
+          <input type="password" id="password" placeholder="Password" data-th-value="${user.password}"/>
+          <input type="password" id="confirm-password" placeholder="Confirm Password" data-th-value="${user.confirmPassword}"/>
           <button class="btn-login" type="submit">Sign Up</button>
         </form>
         <p>
           Already have an account?
-          <a href="../templates/login.html">Login</a>
+          <a href="login.html">Login</a>
         </p>
       </div>
     </section>
-    <script src="signup.js"></script>
+    <script src="../static/signup.js"></script>
   </body>
 </html>
