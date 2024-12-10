@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Providers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Manage Providers</h1>
+
+    <!-- Table of Providers -->
+    <div class="mb-4">
+        <h3>Provider List</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Provider Name</th>
+                <th>Email</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="provider, stat : ${providers}">
+                <td th:text="${stat.index + 1}"></td>
+                <td th:text="${provider.providerName}"></td>
+                <td th:text="${provider.email}"></td>
+                <td th:text="${provider.description}"></td>
+                <td>
+                    <a th:href="@{/PartyPulse/provider/edit/{provider_id}(provider_id=${provider.provider_id})}" class="btn btn-sm btn-primary">Edit</a>
+                    <a th:href="@{/PartyPulse/provider/delete/{provider_id}(provider_id=${provider.provider_id})}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Form to Add a New Provider -->
+    <div class="mb-4">
+        <h3>Add New Provider</h3>
+        <form action="/PartyPulse/provider/new/provider" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="providerName" class="form-label">Provider Name</label>
+                <input type="text" class="form-control" id="providerName" name="providerName" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Add Provider</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Basic validation script
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+</body>
+</html>
