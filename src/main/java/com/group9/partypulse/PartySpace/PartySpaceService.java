@@ -19,11 +19,11 @@ public class PartySpaceService {
 
     public PartySpace findPartySpaceByID(int PartySpace_id) {
         Optional<PartySpace> partySpace = PartySpaceRepository.findById(PartySpace_id);
-        return PartySpace.orElse(null);
+        return partySpace.orElse(null);
     }
 
     public void addNewPartySpace(PartySpace partySpace) {
-        PartySpaceRepository.save(PartySpace);
+        PartySpaceRepository.save(partySpace);
     }
 
     public void editPartySpace(int PartySpace_id, PartySpace partySpace) {
