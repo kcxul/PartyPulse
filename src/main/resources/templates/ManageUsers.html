@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - PartyPulse</title>
+    <style>
+        :root {
+            --primary-bg: #001f3f;
+            --secondary-bg: #003366;
+            --highlight-color: #ffcc00;
+            --button-bg: #ffcc00;
+            --button-hover-bg: #ffd700;
+            --error-color: #ff4444;
+            --text-color: #ffffff;
+            --border-color: #003366;
+            --row-hover-color: #005577;
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            --table-header-bg: #003366;
+            --table-row-bg-alt: #002244;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: var(--text-color);
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border: 2px solid var(--secondary-bg);
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--highlight-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        thead {
+            background-color: var(--table-header-bg);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            color: var(--highlight-color);
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-row-bg-alt);
+        }
+
+        tr:hover {
+            background-color: var(--row-hover-color);
+        }
+
+        button {
+            background-color: var(--button-bg);
+            color: var(--primary-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        button:focus {
+            outline: 2px solid var(--highlight-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            margin-top: 10px;
+        }
+
+        .back-button {
+            background-color: transparent;
+            color: var(--highlight-color);
+            border: 2px solid var(--highlight-color);
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: var(--highlight-color);
+            color: var(--primary-bg);
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                width: 100%;
+                text-align: center;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Manage Users</h1>
+<p>Admin users can manage the details of the users.</p>
+
+<!-- Search Bar -->
+<div class="search-container">
+    <input type="text" id="searchUser" placeholder="Search Users..." onkeyup="filterUsers()">
+</div>
+
+<!-- User Table -->
+<table id="userTable">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Jane Smith</td>
+        <td>janesmith@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Michael Johnson</td>
+        <td>michaelj@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Emily Davis</td>
+        <td>emilydavis@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>David Wilson</td>
+        <td>davidwilson@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Sarah Martinez</td>
+        <td>sarahmartinez@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Robert Brown</td>
+        <td>robertbrown@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Mary Lee</td>
+        <td>marylee@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>William Harris</td>
+        <td>williamharris@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Linda Clark</td>
+        <td>lindaclark@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>James Lewis</td>
+        <td>jameslewis@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+        <td>Patricia Walker</td>
+        <td>patriciawalker@example.com</td>
+        <td>Admin</td>
+        <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Error Message -->
+<div class="error-message" id="errorMessage"></div>
+
+<!-- Back Button -->
+<button class="back-button" onclick="window.history.back();">Back to Admin Dashboard</button>
+
+<button class="back-button" onclick="window.location.href='AdminBoard.html';">Go to Admin Dashboard</button>
+
+<script>
+    // Function to filter users based on search query
+    function filterUsers() {
+        const input = document.getElementById('searchUser');
+        const filter = input.value.toLowerCase();
+        const rows = document.querySelectorAll('#userTable tbody tr');
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            let found = false;
+            cells.forEach(cell => {
+                if (cell.textContent.toLowerCase().includes(filter)) {
+                    found = true;
+                }
+            });
+            row.style.display = found ? '' : 'none';
+        });
+    }
+
+    // Function to remove user row from the table
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Confirm if the user wants to remove
+            const userRow = button.closest('tr');
+            const userName = userRow.querySelector('td').textContent;
+            if (confirm(`Are you sure you want to remove ${userName}?`)) {
+                userRow.remove();
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

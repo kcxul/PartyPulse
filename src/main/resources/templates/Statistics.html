@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - PartyPulse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Define reusable CSS variables */
+        :root {
+            --primary-bg: #001f3f;
+            --secondary-bg: #003366;
+            --highlight-color: #ffcc00;
+            --button-bg: #ffcc00;
+            --button-hover-bg: #ffd700;
+            --error-color: #ff4444;
+            --text-color: #ffffff;
+            --border-color: #003366;
+            --row-hover-color: #005577;
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            --table-header-bg: #003366;
+            --table-row-bg-alt: #002244;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        thead {
+            background-color: var(--table-header-bg);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            color: var(--highlight-color);
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-row-bg-alt);
+        }
+
+        tr:hover {
+            background-color: var(--row-hover-color);
+        }
+
+        /* Back Button */
+        .back-button {
+            background-color: transparent;
+            color: var(--highlight-color);
+            border: 2px solid var(--highlight-color);
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-top: 20px;
+            text-align: center;
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+        }
+
+        .back-button:hover {
+            background-color: var(--highlight-color);
+            color: var(--primary-bg);
+        }
+
+        /* Make the layout responsive */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9rem;
+            }
+
+            .back-button {
+                width: auto;
+            }
+        }
+
+        /* Canvas for the chart */
+        #statisticsChart {
+            max-width: 800px;
+            width: 100%;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Statistics</h1>
+<p>Overview of flagged profiles and site activity.</p>
+
+<!-- Statistics Table -->
+<table id="statsTable">
+    <thead>
+    <tr>
+        <th>Stat Type</th>
+        <th>Count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Example Rows with Realistic Statistics -->
+    <tr>
+        <td>Flagged Profiles</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>Active Users</td>
+        <td>5</td> <!-- Updated to 5 active users -->
+    </tr>
+    <tr>
+        <td>Profiles Removed</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>Pending Approvals</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>Recent Reviews Flagged</td>
+        <td>3</td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Chart for Statistics -->
+<canvas id="statisticsChart"></canvas>
+
+<!-- Back Button -->
+<button class="back-button" onclick="window.history.back();">Back to Admin Board</button>
+
+<script>
+    // Data for the chart (counts for each stat)
+    const statsData = {
+        labels: ['Flagged Profiles', 'Active Users', 'Profiles Removed', 'Pending Approvals', 'Recent Reviews Flagged'],
+        datasets: [{
+            label: 'Site Activity Statistics',
+            data: [3, 5, 1, 2, 3], // Updated data for active users
+            backgroundColor: 'rgba(255, 204, 0, 0.6)',
+            borderColor: 'rgba(255, 204, 0, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Config for the chart
+    const config = {
+        type: 'bar', // Bar chart type
+        data: statsData,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false // Hide the legend
+                }
+            }
+        }
+    };
+
+    // Create the chart
+    const ctx = document.getElementById('statisticsChart').getContext('2d');
+    new Chart(ctx, config);
+</script>
+
+</body>
+
+</html>

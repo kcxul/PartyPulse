@@ -1,51 +1,52 @@
 package com.group9.partypulse.user;
 
-
 import jakarta.persistence.*;
 
 @Entity
 @Table()
 public class User {
 
-    //user stuff here
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
 
-    @Column
+    @Column(nullable = false)
     private String userName;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String confirmPassword;
-
     private String profile_des;
 
-    @Column
+    @Column(nullable = false)
     private String user_email;
 
-    public User(int user_id, String userName, String user_email, String password, String confirmPassword, String profile_des) {
+    @Column(nullable = false)
+    private String accountStatus;  // Add accountStatus field
+
+    // Constructors
+    public User(int user_id, String userName, String user_email, String password, String profile_des, String accountStatus) {
         this.user_id = user_id;
         this.userName = userName;
         this.user_email = user_email;
         this.password = password;
-        this.confirmPassword = confirmPassword;
         this.profile_des = profile_des;
+        this.accountStatus = accountStatus;  // Initialize accountStatus
     }
 
-    public User(String userName, String user_email, String password, String confirmPassword, String profile_des) {
+    public User(String userName, String user_email, String password, String profile_des, String accountStatus) {
         this.userName = userName;
         this.user_email = user_email;
         this.password = password;
-        this.confirmPassword = confirmPassword;
         this.profile_des = profile_des;
+        this.accountStatus = accountStatus;  // Initialize accountStatus
     }
 
     public User() {
+        // Default constructor
     }
 
+    // Getter and Setter methods
     public int getUser_id() {
         return user_id;
     }
@@ -78,14 +79,6 @@ public class User {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
     public String getProfile_des() {
         return profile_des;
     }
@@ -94,4 +87,12 @@ public class User {
         this.profile_des = profile_des;
     }
 
+    // Getter and Setter for accountStatus
+    public String getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
+    }
 }

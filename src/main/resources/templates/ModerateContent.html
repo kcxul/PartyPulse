@@ -170,7 +170,7 @@
 <body>
 
 <h1>Moderate Services</h1>
-<p>Review flagged profiles for inappropriate content.</p>
+<p>Review flagged profiles and content for inappropriate material.</p>
 
 <!-- Search Bar -->
 <div class="search-container">
@@ -187,56 +187,64 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Example Rows -->
+    <!-- Example Rows, simulating dynamic data from a database -->
     <tr>
         <td>001</td>
-        <td>User1</td>
+        <td>Mary</td>
         <td><button onclick="removeProfile('001')">Remove</button></td>
     </tr>
     <tr>
         <td>002</td>
-        <td>User2</td>
+        <td>John</td>
         <td><button onclick="removeProfile('002')">Remove</button></td>
     </tr>
     <tr>
         <td>003</td>
-        <td>User3</td>
+        <td>Alice</td>
         <td><button onclick="removeProfile('003')">Remove</button></td>
     </tr>
+    <!-- Add other profiles as needed -->
+    </tbody>
+</table>
+
+<!-- Flagged Content Review Section -->
+<h2>Review Flagged Content</h2>
+<table id="flaggedContentTable">
+    <thead>
     <tr>
-        <td>004</td>
-        <td>User4</td>
-        <td><button onclick="removeProfile('004')">Remove</button></td>
+        <th>Content ID</th>
+        <th>User</th>
+        <th>Reason for Flag</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>001</td>
+        <td>Mary</td>
+        <td>Inappropriate Language</td>
+        <td>
+            <button onclick="approveContent('001')">Approve</button>
+            <button onclick="removeContent('001')">Remove</button>
+        </td>
     </tr>
     <tr>
-        <td>005</td>
-        <td>User5</td>
-        <td><button onclick="removeProfile('005')">Remove</button></td>
+        <td>002</td>
+        <td>John</td>
+        <td>Spam Content</td>
+        <td>
+            <button onclick="approveContent('002')">Approve</button>
+            <button onclick="removeContent('002')">Remove</button>
+        </td>
     </tr>
     <tr>
-        <td>006</td>
-        <td>User6</td>
-        <td><button onclick="removeProfile('006')">Remove</button></td>
-    </tr>
-    <tr>
-        <td>007</td>
-        <td>User7</td>
-        <td><button onclick="removeProfile('007')">Remove</button></td>
-    </tr>
-    <tr>
-        <td>008</td>
-        <td>User8</td>
-        <td><button onclick="removeProfile('008')">Remove</button></td>
-    </tr>
-    <tr>
-        <td>009</td>
-        <td>User9</td>
-        <td><button onclick="removeProfile('009')">Remove</button></td>
-    </tr>
-    <tr>
-        <td>010</td>
-        <td>User10</td>
-        <td><button onclick="removeProfile('010')">Remove</button></td>
+        <td>003</td>
+        <td>Alice</td>
+        <td>Harassment</td>
+        <td>
+            <button onclick="approveContent('003')">Approve</button>
+            <button onclick="removeContent('003')">Remove</button>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -275,6 +283,28 @@
             document.getElementById("errorProfileMessage").textContent = 'Profile successfully removed.';
         } else {
             document.getElementById("errorProfileMessage").textContent = 'Error: No action can be taken.';
+        }
+    }
+
+    // Function to approve flagged content
+    function approveContent(contentId) {
+        const contentRow = [...document.getElementById("flaggedContentTable").rows].find(row => row.cells[0].textContent === contentId);
+        if (contentRow) {
+            contentRow.remove();
+            document.getElementById("errorProfileMessage").textContent = 'Content approved successfully.';
+        } else {
+            document.getElementById("errorProfileMessage").textContent = 'Error: Content cannot be approved.';
+        }
+    }
+
+    // Function to remove flagged content
+    function removeContent(contentId) {
+        const contentRow = [...document.getElementById("flaggedContentTable").rows].find(row => row.cells[0].textContent === contentId);
+        if (contentRow) {
+            contentRow.remove();
+            document.getElementById("errorProfileMessage").textContent = 'Content removed successfully.';
+        } else {
+            document.getElementById("errorProfileMessage").textContent = 'Error: Content cannot be removed.';
         }
     }
 </script>

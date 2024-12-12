@@ -1,47 +1,47 @@
 package com.group9.partypulse.PartySpace;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table()
 public class PartySpace {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int PartySpace_id;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String PartySpaceName;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int chatid;
+    @Column(nullable = false)
+    private int chatId;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String partySpace_des;
 
-
-
-    public PartySpace(int PartySpace_id, String PartySpaceName, int chatid, String partySpace_des) {
+    // Constructors
+    public PartySpace(int PartySpace_id, String PartySpaceName, int chatId, String partySpace_des) {
         this.PartySpace_id = PartySpace_id;
         this.PartySpaceName = PartySpaceName;
-        this.chatid = chatid;
+        this.chatId = chatId;
         this.partySpace_des = partySpace_des;
     }
 
-    public PartySpace(String PartySpaceName, int chatid, String partySpace_des) {
+    public PartySpace(String PartySpaceName, int chatId, String partySpace_des) {
         this.PartySpaceName = PartySpaceName;
-        this.chatid = chatid;
+        this.chatId = chatId;
         this.partySpace_des = partySpace_des;
     }
+
     public PartySpace() {
     }
 
-    public int getPartySpace_id() {
-        return PartySpace_id;
+    // Getters and setters
+    public int getPartySpaceId() {
+        return PartySpace_id;  // Changed method name to camelCase
     }
 
-    public void setPartySpace_id(int PartySpace_id) {
+    public void setPartySpaceId(int PartySpace_id) {
         this.PartySpace_id = PartySpace_id;
     }
 
@@ -53,23 +53,19 @@ public class PartySpace {
         this.PartySpaceName = PartySpaceName;
     }
 
-
-
-    public int getchatid() {
-        return chatid;
+    public int getChatId() {
+        return chatId;
     }
 
-    public void setchatid(int chatid) {
-        this.chatid = chatid;
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
     }
 
-    public String getPartySpace_des() {
+    public String getPartySpaceDes() {
         return partySpace_des;
     }
 
-    public void setPartySpace_des(String partySpace_des) {
-        this.partySpace_des = partySpace_des;
+    public void setPartySpaceDes(String partySpaceDes) {
+        this.partySpace_des = partySpaceDes;
     }
-
 }
-

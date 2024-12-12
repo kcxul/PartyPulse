@@ -1,6 +1,8 @@
 package com.group9.partypulse.provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,5 +58,16 @@ public class ProviderController {
         List<Provider> providers = providerService.getAllProviders();
         model.addAttribute("providers", providers);
         return "manageProviders";
+    }
+
+    @PostMapping("/login")
+    @ResponseBody
+    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
+        try {
+            Provider provider = providerService.authenticateProvider(email, password);
+            return ResponseEntity.ok("Welcome, " + provider.getProviderName() + "!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
     }
 }

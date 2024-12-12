@@ -10,32 +10,44 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepo UserRepository;
+    private UserRepo userRepository;  // Correct the variable name to follow Java conventions
 
+    // Fetch all users
     public List<User> getAllUsers() {
-        return UserRepository.findAll();
+        return userRepository.findAll();
     }
 
-    public User findUserByID(int user_id) {
-        Optional<User> user = UserRepository.findById(user_id);
-        return user.orElse(null);
+    // Find user by ID
+    public User findUserByID(int userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return user.orElse(null);  // Return null if not found
     }
 
+    // Add a new user
     public void addNewUser(User user) {
-        UserRepository.save(user);
+        userRepository.save(user);
     }
 
-    public void editUser(int user_id, User user) {
-        User existing = findUserByID(user_id);
+    // Edit an existing user
+    public void editUser(int userId, User user) {
+        User existing = findUserByID(userId);
         if (existing != null) {
+            // Update the user information with the values from the updated user
             existing.setUserName(user.getUserName());
             existing.setUser_email(user.getUser_email());
             existing.setProfile_des(user.getProfile_des());
-            UserRepository.save(existing);
+            existing.setAccountStatus(user.getAccountStatus());  // Update the account status as well
+            userRepository.save(existing);  // Save the updated user to the repository
         }
     }
 
-    public void deleteUserByID(int user_id) {
-        UserRepository.deleteById(user_id);
+    // Delete a user by ID
+    public void deleteUserByID(int userId) {
+        userRepository.deleteById(userId);
+    }
+
+    // Search for users by userName (updated method name)
+    public List<User> searchUsersByUsername(String userName) {
+        return userRepository.findByUserNameContaining(userName);  // Updated method name
     }
 }

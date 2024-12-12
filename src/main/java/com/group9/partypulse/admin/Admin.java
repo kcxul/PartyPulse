@@ -16,6 +16,17 @@ public class Admin {
     private String password;
     private String accountStatus;
 
+    // Default constructor
+    public Admin() {
+    }
+
+    // Constructor with fields for easier object creation
+    public Admin(String username, String password, String accountStatus) {
+        this.username = username;
+        this.password = password;
+        this.accountStatus = accountStatus;
+    }
+
     // Getters and setters
     public Long getId() {
         return id;
@@ -47,5 +58,15 @@ public class Admin {
 
     public void setAccountStatus(String accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    // Override toString method for better logging or debugging
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", accountStatus='" + accountStatus + '\'' +
+                '}';
     }
 }

@@ -13,17 +13,21 @@ public class Provider {
     @Column(nullable = false)
     private String providerName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password; // Added for login functionality
 
     private String description;
 
     public Provider() {
     }
 
-    public Provider(String providerName, String email, String description) {
+    public Provider(String providerName, String email, String password, String description) {
         this.providerName = providerName;
         this.email = email;
+        this.password = password;
         this.description = description;
     }
 
@@ -49,6 +53,14 @@ public class Provider {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDescription() {

@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Reviews - PartyPulse</title>
+    <title>Moderate Reviews - PartyPulse</title>
     <style>
-        /* Define reusable CSS variables */
         :root {
             --primary-bg: #001f3f;
             --secondary-bg: #003366;
@@ -46,7 +45,6 @@
             color: var(--text-color);
         }
 
-        /* Search Input */
         .search-container {
             margin-bottom: 20px;
         }
@@ -64,7 +62,6 @@
             border-color: var(--highlight-color);
         }
 
-        /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -96,7 +93,6 @@
             background-color: var(--row-hover-color);
         }
 
-        /* Buttons */
         button {
             background-color: var(--button-bg);
             color: var(--primary-bg);
@@ -116,13 +112,11 @@
             outline: 2px solid var(--highlight-color);
         }
 
-        /* Error Message */
         .error-message {
             color: var(--error-color);
             margin-top: 10px;
         }
 
-        /* Back Button */
         .back-button {
             background-color: transparent;
             color: var(--highlight-color);
@@ -137,7 +131,6 @@
             color: var(--primary-bg);
         }
 
-        /* Make the layout responsive */
         @media (max-width: 768px) {
             .search-container {
                 width: 100%;
@@ -192,24 +185,29 @@
 <button class="back-button" onclick="window.location.href='AdminBoard.html';">Go to Admin Dashboard</button>
 
 <script>
-    // Sample review data (you can fetch this from a server in a real-world app)
-    const reviews = [
-        { id: 'R001', user: 'GamerX', content: 'Amazing graphics and immersive gameplay, but the servers need some work!', timestamp: '2024-11-05 12:30', status: 'Pending' },
-        { id: 'R002', user: 'SpeedyPlayer', content: 'Best battle royale experience so far! I can’t stop playing it!', timestamp: '2024-11-05 14:20', status: 'Approved' },
-        { id: 'R003', user: 'NoobMaster', content: 'Buggy updates ruined the experience. The game crashes every time I try to join a match!', timestamp: '2024-11-06 09:15', status: 'Pending' },
-        { id: 'R004', user: 'ProGamer42', content: 'Great team mechanics and diverse characters, but matchmaking is way too slow.', timestamp: '2024-11-06 11:00', status: 'Approved' },
-        { id: 'R005', user: 'EpicGamer77', content: 'Incredible story mode, but the online multiplayer feels stale. Could use new maps!', timestamp: '2024-11-06 12:40', status: 'Pending' },
-        { id: 'R006', user: 'GameKing98', content: 'This game has a huge potential, but the lack of updates is disappointing. Hope they add more content soon!', timestamp: '2024-11-07 10:10', status: 'Approved' },
-        { id: 'R007', user: 'PvPChampion', content: 'I love the PvP modes! But the weapon balance is off. Some guns are too OP.', timestamp: '2024-11-07 15:05', status: 'Pending' },
-        { id: 'R008', user: 'QuestMasterX', content: 'The quest system is fantastic, but I’d like to see better rewards for completing side missions.', timestamp: '2024-11-08 09:25', status: 'Approved' },
-        { id: 'R009', user: 'GamerGirl', content: 'Awesome character design and lore! But the combat feels a little too repetitive after a while.', timestamp: '2024-11-08 12:45', status: 'Pending' },
-        { id: 'R010', user: 'ChillGamer', content: 'The game’s open world is gorgeous, but the AI is too predictable. Needs improvement!', timestamp: '2024-11-08 14:00', status: 'Approved' },
-    ];
+    // Simulating fetching data from the backend (e.g., database)
+    async function fetchReviews() {
+        try {
+            // Sample reviews data
+            const reviews = [
+                {id: 1, user: 'JaneDoe', content: 'Great app! Loved using it for my party planning.', timestamp: '2024-12-01 10:00', status: 'Approved'},
+                {id: 2, user: 'JohnSmith', content: 'The app crashed several times, needs improvement.', timestamp: '2024-12-02 14:30', status: 'Pending'},
+                {id: 3, user: 'SaraLee', content: 'I had an amazing experience! Will definitely use it again.', timestamp: '2024-12-03 12:20', status: 'Approved'},
+                {id: 4, user: 'TomHarris', content: 'User interface is confusing. Needs better navigation.', timestamp: '2024-12-04 16:45', status: 'Pending'},
+                {id: 5, user: 'EmilyClark', content: 'Could not find the features I was looking for. Disappointed.', timestamp: '2024-12-05 08:50', status: 'Rejected'}
+            ];
 
-    // Function to populate the review table
-    function populateReviewTable() {
+            populateReviewTable(reviews);
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            document.getElementById('errorReviewMessage').textContent = 'Error loading reviews.';
+        }
+    }
+
+    // Function to populate the review table with database data
+    function populateReviewTable(reviews) {
         const tableBody = document.querySelector('#reviewTable tbody');
-        tableBody.innerHTML = ''; // Clear the table first
+        tableBody.innerHTML = '';  // Clear the table first
 
         reviews.forEach(review => {
             const row = document.createElement('tr');
@@ -247,19 +245,27 @@
     function deleteReview(reviewId) {
         const confirmation = confirm("Are you sure you want to delete this review?");
         if (confirmation) {
-            const index = reviews.findIndex(review => review.id === reviewId);
-            if (index !== -1) {
-                reviews.splice(index, 1);  // Remove review from array
-                populateReviewTable();  // Re-populate the table
-                document.getElementById('errorReviewMessage').textContent = 'Review successfully deleted.';
-            } else {
-                document.getElementById('errorReviewMessage').textContent = 'Error: Review not found.';
-            }
+            // Backend API call to delete review (example endpoint)
+            fetch(`/api/reviews/${reviewId}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('errorReviewMessage').textContent = 'Review successfully deleted.';
+                    fetchReviews();  // Refresh the table after deletion
+                } else {
+                    document.getElementById('errorReviewMessage').textContent = 'Error: Review not found.';
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting review:', error);
+                document.getElementById('errorReviewMessage').textContent = 'Error deleting review.';
+            });
         }
     }
 
-    // Populate the table when the page loads
-    window.onload = populateReviewTable;
+    // Load reviews on page load
+    window.onload = fetchReviews;
 </script>
 
 </body>

@@ -1,4 +1,5 @@
 package com.group9.partypulse.PartySpace;
+
 import com.group9.partypulse.PartySpace.PartySpace;
 import com.group9.partypulse.PartySpace.PartySpaceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,32 +12,33 @@ import java.util.Optional;
 public class PartySpaceService {
 
     @Autowired
-    private PartySpaceRepo PartySpaceRepository;
+    private PartySpaceRepo partySpaceRepository;  // Renamed to follow naming conventions
 
     public List<PartySpace> getAllPartySpaces() {
-        return PartySpaceRepository.findAll();
+        return partySpaceRepository.findAll();
     }
 
-    public PartySpace findPartySpaceByID(int PartySpace_id) {
-        Optional<PartySpace> partySpace = PartySpaceRepository.findById(PartySpace_id);
+    public PartySpace findPartySpaceByID(int partySpaceId) {  // Renamed parameter
+        Optional<PartySpace> partySpace = partySpaceRepository.findById(partySpaceId);
         return partySpace.orElse(null);
     }
 
     public void addNewPartySpace(PartySpace partySpace) {
-        PartySpaceRepository.save(partySpace);
+        partySpaceRepository.save(partySpace);
     }
 
-    public void editPartySpace(int PartySpace_id, PartySpace partySpace) {
-        PartySpace existing = findPartySpaceByID(PartySpace_id);
+    public void editPartySpace(int partySpaceId, PartySpace partySpace) {  // Renamed parameter
+        PartySpace existing = findPartySpaceByID(partySpaceId);
         if (existing != null) {
-            existing.setPartySpaceName(PartySpace.getPartySpaceName());
-            existing.setchatid(PartySpace.getchatid());
-            existing.setPartySpace_des(PartySpace.getPartySpace_des());
-            PartySpaceRepository.save(existing);
+            // Corrected to use the 'partySpace' parameter, not the 'PartySpace' class
+            existing.setPartySpaceName(partySpace.getPartySpaceName());
+            existing.setChatId(partySpace.getChatId());
+            existing.setPartySpaceDes(partySpace.getPartySpaceDes());
+            partySpaceRepository.save(existing);
         }
     }
 
-    public void deletePartySpaceByID(int PartySpace_id) {
-        PartySpaceRepository.deleteById(PartySpace_id);
+    public void deletePartySpaceByID(int partySpaceId) {  // Renamed parameter
+        partySpaceRepository.deleteById(partySpaceId);
     }
 }

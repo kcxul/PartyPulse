@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -120,60 +120,24 @@
     <p>Please enter your username and password to access the admin board.</p>
 
     <!-- Login form -->
-    <div>
-        <input type="text" id="username" placeholder="Username" required aria-label="Username">
-        <input type="password" id="password" placeholder="Password" required aria-label="Password">
-    </div>
+    <form action="/admin/login" method="POST">
+        <input type="text" name="username" placeholder="Username" required aria-label="Username">
+        <input type="password" name="password" placeholder="Password" required aria-label="Password">
 
-    <!-- Login Button -->
-    <div>
-        <button onclick="login()">Login</button>
-    </div>
+        <!-- Error message -->
+        <div class="error-message">
+            <span th:if="${param.error}" th:text="'Invalid username or password'"></span>
+        </div>
 
-    <!-- Error message -->
-    <div class="error-message" id="loginMessage"></div>
+        <!-- Login Button -->
+        <button type="submit">Login</button>
+    </form>
 
     <!-- Back to Home Button -->
     <div>
-        <button class="back-home-btn" onclick="window.location.href='index.html';">Back to Home</button>
+        <button class="back-home-btn" onclick="window.location.href='/';">Back to Home</button>
     </div>
 </div>
-
-<script>
-    function login() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const messageElement = document.getElementById("loginMessage");
-
-        // Create the login data to send to the backend
-        const loginData = {
-            username: username,
-            password: password
-        };
-
-        // Send a POST request to the backend to verify the login credentials
-        fetch('/admin/login', {  // Adjust the route if needed
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        })
-        .then(response => {
-            if (response.ok) {
-                // Successful login, redirect to the admin board
-                window.location.href = 'AdminBoard.html';  // Update this path based on your app structure
-            } else {
-                // Display error if login failed
-                messageElement.textContent = 'Error: Invalid username or password.';
-            }
-        })
-        .catch(error => {
-            // Handle network errors
-            messageElement.textContent = 'Error: Could not connect to the server.';
-        });
-    }
-</script>
 
 </body>
 

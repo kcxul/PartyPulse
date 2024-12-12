@@ -8,6 +8,10 @@
 <div class="container mt-5">
     <h1 class="mb-4">Manage Providers</h1>
 
+    <!-- Feedback Messages -->
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
     <!-- Table of Providers -->
     <div class="mb-4">
         <h3>Provider List</h3>
@@ -28,8 +32,11 @@
                 <td th:text="${provider.email}"></td>
                 <td th:text="${provider.description}"></td>
                 <td>
-                    <a th:href="@{/PartyPulse/provider/edit/{provider_id}(provider_id=${provider.provider_id})}" class="btn btn-sm btn-primary">Edit</a>
-                    <a th:href="@{/PartyPulse/provider/delete/{provider_id}(provider_id=${provider.provider_id})}" class="btn btn-sm btn-danger">Delete</a>
+                    <a th:href="@{/PartyPulse/provider/edit/{provider_id}(provider_id=${provider.provider_id})}"
+                       class="btn btn-sm btn-primary">Edit</a>
+                    <a th:href="@{/PartyPulse/provider/delete/{provider_id}(provider_id=${provider.provider_id})}"
+                       class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this provider?');">Delete</a>
                 </td>
             </tr>
             </tbody>
@@ -39,7 +46,7 @@
     <!-- Form to Add a New Provider -->
     <div class="mb-4">
         <h3>Add New Provider</h3>
-        <form action="/PartyPulse/provider/new/provider" method="post" class="needs-validation" novalidate>
+        <form th:action="@{/PartyPulse/provider/new/provider}" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="providerName" class="form-label">Provider Name</label>
                 <input type="text" class="form-control" id="providerName" name="providerName" required>
@@ -47,6 +54,10 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>

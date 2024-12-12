@@ -38,4 +38,15 @@ public class ProviderService {
     public void deleteProviderByID(int provider_id) {
         providerRepo.deleteById(provider_id);
     }
+
+    public Provider authenticateProvider(String email, String password) {
+        Provider provider = providerRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Provider not found"));
+
+        if (!provider.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
+        return provider;
+    }
 }
