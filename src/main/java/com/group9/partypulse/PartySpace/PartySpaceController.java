@@ -54,8 +54,8 @@ public class PartySpaceController {
     }
 
     @PostMapping("/update-PartySpace")
-    public String updateUser(User user){
-        service.addNewUser(user);
+    public String updateUser(PartySpace partySpace){
+        service.addNewPartySpace(partySpace);
         return "redirect:/PartyPulse/{PartySpace_id}";
     }
 
