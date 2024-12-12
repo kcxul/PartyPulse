@@ -10,14 +10,14 @@ public class PartySpace {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int PartySpace_id;
 
-    @Column
+    @Column (nullable = false)
     private String PartySpaceName;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int chatid;
 
-    @Column
+    @Column (nullable = false)
     private String partySpace_des;
 
 
@@ -25,13 +25,13 @@ public class PartySpace {
     public PartySpace(int PartySpace_id, String PartySpaceName, int chatid, String partySpace_des) {
         this.PartySpace_id = PartySpace_id;
         this.PartySpaceName = PartySpaceName;
-        this.chatid = chatid
+        this.chatid = chatid;
         this.partySpace_des = partySpace_des;
     }
 
     public PartySpace(String PartySpaceName, int chatid, String partySpace_des) {
         this.PartySpaceName = PartySpaceName;
-        this.chatid = chatid
+        this.chatid = chatid;
         this.partySpace_des = partySpace_des;
     }
     public PartySpace() {
